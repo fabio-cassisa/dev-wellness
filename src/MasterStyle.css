@@ -50,7 +50,7 @@ body {
 .main-app-name {
   padding-top: 5%;
   color: var(--primary-text-color);
-  font-family: 'Inter-SemiBold', Helvetica;
+  font-family: 'Inter', Helvetica, sans-serif;
   font-size: 7vmin;
   text-align: center;
   font-weight: 600;
@@ -60,7 +60,7 @@ body {
 
 .secondary-header {
   color: var(--primary-text-color);
-  font-family: 'Inter-SemiBold', Helvetica;
+  font-family: 'Inter', Helvetica, sans-serif;
   font-size: 4.5vmin;
   text-align: center;
   font-weight: 600;
@@ -70,7 +70,7 @@ body {
 
 .text-paragraph {
   color: var(--primary-text-color);
-  font-family: 'Inter-Regular', Helvetica;
+  font-family: 'Inter', Helvetica, sans-serif;
   font-size: 4vmin;
   text-align: justify;
   font-weight: 400;

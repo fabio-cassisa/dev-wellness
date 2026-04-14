@@ -13,7 +13,7 @@
   top: calc(55%);
   left: calc(0%);
   font-size: 3vmin;
-  font-family: 'Inter-Regular', Helvetica;
+  font-family: 'Inter', Helvetica, sans-serif;
   width: 100%;
   vertical-align: middle;
   text-align: center;
@@ -75,7 +75,7 @@
 
 .breathe-history {
   color: var(--primary-text-color);
-  font-family: 'Inter-Regular', Helvetica;
+  font-family: 'Inter', Helvetica, sans-serif;
   font-size: 3.5vmin;
   font-weight: 400;
   overflow: hidden;

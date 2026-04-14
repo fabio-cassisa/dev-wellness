@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { MobileMoodBTN } from '../MobileBTN';
+import { MobileNavLink } from '../MobileNavLink';
 import {
   setEnergyLevel,
   setMoodLevel,
@@ -169,7 +169,10 @@ export const MoodTrackerDetailed = () => {
             </div>
           )}
         </div>
-        <MobileMoodBTN />
+        <MobileNavLink links={[
+          { to: '/', label: '. DASHBOARD' },
+          { to: '/about-mood-tracker', label: '. MOOD INFO' },
+        ]} />
       </div>
     </div>
   );

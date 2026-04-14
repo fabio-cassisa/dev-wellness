@@ -34,7 +34,7 @@
 }
 
 .focus-timer-next {
-  font-family: 'Inter-Regular', Helvetica;
+  font-family: 'Inter', Helvetica, sans-serif;
   color: var(--primary-text-color);
   font-size: 4vmin;
   font-weight: 600;
@@ -58,7 +58,7 @@
 .focus-done-day {
   padding-top: 5%;
   color: var(--primary-text-color);
-  font-family: 'Inter-Regular', Helvetica;
+  font-family: 'Inter', Helvetica, sans-serif;
   font-size: 5vmin;
   font-weight: 600;
   letter-spacing: 0.36px;
@@ -67,7 +67,7 @@
 
 .focus-history {
   color: var(--primary-text-color);
-  font-family: 'Inter-Regular', Helvetica;
+  font-family: 'Inter', Helvetica, sans-serif;
   font-size: 3.5vmin;
   font-weight: 400;
   overflow: hidden;

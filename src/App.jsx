@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 import { applyColorPalette } from './helpers';
 import { DesktopHomepage } from './pages/DesktopHomepage';
 import { StartPage } from './pages/StartPage';
@@ -24,12 +25,12 @@ export const App = () => {
   }, [selectedPalette]);
 
   return (
-    <div>
+    <BrowserRouter>
       {isSetupComplete ? (
         <DesktopHomepage />
       ) : (
         <StartPage onSetupComplete={handleSetupComplete} />
       )}
-    </div>
+    </BrowserRouter>
   );
 };

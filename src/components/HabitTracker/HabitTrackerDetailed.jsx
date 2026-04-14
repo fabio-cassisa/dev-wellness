@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleHabit } from '../../reducers/habits';
 import { getYesterdayDate } from '../../helpers';
 import { DashLine } from '../../assets/SVGElements';
-import { MobileHabitBTN } from '../MobileBTN';
+import { MobileNavLink } from '../MobileNavLink';
 import './HabitTrackerDetailed.css';
 
 export const HabitTrackerDetailed = () => {
@@ -93,7 +93,10 @@ export const HabitTrackerDetailed = () => {
             </div>
           )}
         </div>
-        <MobileHabitBTN />
+        <MobileNavLink links={[
+          { to: '/', label: '. DASHBOARD' },
+          { to: '/about-habit-tracker', label: '. HABIT INFO' },
+        ]} />
       </div>
     </div>
   );

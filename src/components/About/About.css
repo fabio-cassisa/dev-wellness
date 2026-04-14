@@ -8,7 +8,7 @@
 .about-header {
   padding-top: 10%;
   color: var(--primary-text-color);
-  font-family: 'Inter-SemiBold', Helvetica;
+  font-family: 'Inter', Helvetica, sans-serif;
   font-size: 7vmin;
   font-weight: 600;
   letter-spacing: 0.36px;
@@ -17,7 +17,7 @@
 
 .about-paragraph {
   color: var(--primary-text-color);
-  font-family: 'Inter-Regular', Helvetica;
+  font-family: 'Inter', Helvetica, sans-serif;
   padding-top: 10%;
   width: 90%;
   text-align: left;
