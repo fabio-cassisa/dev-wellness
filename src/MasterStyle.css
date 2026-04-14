@@ -113,8 +113,10 @@ body {
 @media only screen and (max-width: 767px) {
   .main-wrapper {
     width: 100vw;
-    height: 100vh; /* Adjust as needed */
+    min-height: 100vh;
+    height: auto;
     border-radius: 0px;
+    padding-bottom: 80px; /* space for fixed mobile bottom nav */
   }
 }
 

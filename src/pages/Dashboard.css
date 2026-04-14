@@ -15,6 +15,22 @@
   background-color: var(--tertiary-bg-color);
   border-radius: 7.7%;
   position: relative;
+  transition: box-shadow 0.3s ease;
+}
+
+/* Active tile glow — applied when a timer is running */
+.tile-active {
+  box-shadow: 0 0 12px 2px var(--primary-accent-color);
+  animation: tile-pulse 2s ease-in-out infinite;
+}
+
+@keyframes tile-pulse {
+  0%, 100% {
+    box-shadow: 0 0 12px 2px var(--primary-accent-color);
+  }
+  50% {
+    box-shadow: 0 0 20px 6px var(--primary-accent-color);
+  }
 }
 
 .tile-main-name {
@@ -27,6 +43,33 @@
   font-weight: 400;
   letter-spacing: 0.3px;
   line-height: normal;
+}
+
+/* Streak badge */
+.streak-badge {
+  color: var(--primary-text-color);
+  font-family: 'Inter', Helvetica, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: var(--tertiary-bg-color);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+
+/* Weekly summary link on dashboard */
+.weekly-link-dashboard {
+  color: var(--secondary-accent-color);
+  font-family: 'Inter', Helvetica, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: color 0.2s ease;
+}
+
+.weekly-link-dashboard:hover {
+  color: var(--primary-text-color);
 }
 
 /* Media query for smaller screens (e.g., mobile devices) */

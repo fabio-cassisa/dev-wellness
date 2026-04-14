@@ -33,6 +33,7 @@
   .mood, 
   .habit, 
   .breath, 
+  .weekly-link,
   .settings-link {
     color: var(--primary-text-color);
     text-decoration: none;
@@ -44,6 +45,7 @@
   .mood:hover, 
   .habit:hover, 
   .breath:hover,
+  .weekly-link:hover,
   .settings-link:hover {
     text-decoration: underline;
     cursor: pointer;

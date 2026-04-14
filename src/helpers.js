@@ -16,6 +16,56 @@ export const millisToMinutesAndSeconds = millis => {
   return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
 };
 
+// Calculate consecutive-day streak from historical data
+// A "day" counts if it exists as a key in historicalData
+export const calculateStreak = (historicalData) => {
+  if (!historicalData || Object.keys(historicalData).length === 0) return 0;
+
+  const today = new Date();
+  let streak = 0;
+  let checkDate = new Date(today);
+
+  // Check today first — if no entry yet today, start from yesterday
+  const todayKey = checkDate.toISOString().split('T')[0];
+  if (!historicalData[todayKey]) {
+    checkDate.setDate(checkDate.getDate() - 1);
+  }
+
+  // Walk backwards through consecutive days
+  while (true) {
+    const key = checkDate.toISOString().split('T')[0];
+    if (historicalData[key]) {
+      streak++;
+      checkDate.setDate(checkDate.getDate() - 1);
+    } else {
+      break;
+    }
+  }
+
+  return streak;
+};
+
+// Get the last N days of historical data as an array (oldest first)
+export const getRecentDays = (historicalData, days = 7) => {
+  if (!historicalData) return [];
+
+  const result = [];
+  const today = new Date();
+
+  for (let i = days - 1; i >= 0; i--) {
+    const d = new Date(today);
+    d.setDate(d.getDate() - i);
+    const key = d.toISOString().split('T')[0];
+    result.push({
+      date: key,
+      dayLabel: d.toLocaleDateString('en', { weekday: 'short' }),
+      data: historicalData[key] || null,
+    });
+  }
+
+  return result;
+};
+
 export const applyColorPalette = selectedPalette => {
   const colorPalettes = {
     dark: {

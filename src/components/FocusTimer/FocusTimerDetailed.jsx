@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { MobileNavLink } from '../MobileNavLink';
 import {
   CircularProgressbarWithChildren,
   buildStyles,
@@ -9,8 +8,10 @@ import {
   handleResetFocusTimer,
   handleStartFocusTimer,
 } from './FocusTimerDispatch';
-import { getYesterdayDate, millisToMinutesAndSeconds } from '../../helpers';
+import { getYesterdayDate, getRecentDays, millisToMinutesAndSeconds } from '../../helpers';
 import { DashLine, ResetIcon } from '../../assets/SVGElements';
+import { EmptyState } from '../EmptyState';
+import { WeekDots } from '../WeekDots';
 import './FocusTimerDetailed.css';
 
 export const FocusTimerDetailed = () => {
@@ -66,6 +67,14 @@ export const FocusTimerDetailed = () => {
   const withHistoricalData =
     dataYesterday != null && historicalFocusData.count != 0;
 
+  // Build 7-day dot data — normalize focus count (cap at 4 for full intensity)
+  const recentDays = getRecentDays(historical);
+  const weekDots = recentDays.map(day => ({
+    dayLabel: day.dayLabel,
+    value: day.data ? Math.min(day.data.focusTimer.focusTimerCount / 4, 1) : 0,
+    display: day.data ? `${day.data.focusTimer.focusTimerCount} sessions` : undefined,
+  }));
+
   return (
     <div className="main-wrapper">
       <div className="app-container">
@@ -99,28 +108,31 @@ export const FocusTimerDetailed = () => {
         <p className="focus-done-day">
           Focus timers done today: {focusTimer.focusTimerCount}
         </p>
-        {withHistoricalData && <DashLine />}
-        <div className="focus-history">
-          {dataYesterday != null && (
-            <div className="focus-history-yesterday">
-              Yesterday&apos;s data:
-              <p />
-              Count: {dataYesterday.focusTimer.focusTimerCount}
+        {withHistoricalData ? (
+          <>
+            <WeekDots days={weekDots} label="Last 7 days" />
+            <DashLine />
+            <div className="focus-history">
+              {dataYesterday != null && (
+                <div className="focus-history-yesterday">
+                  Yesterday&apos;s data:
+                  <p />
+                  Count: {dataYesterday.focusTimer.focusTimerCount}
+                </div>
+              )}
+              {historicalFocusData.count != 0 && (
+                <div className="focus-history-overall">
+                  Overall data:
+                  <p />
+                  Average per day:{' '}
+                  {Math.round(historicalFocusData.done / historicalFocusData.count)}
+                </div>
+              )}
             </div>
-          )}
-          {historicalFocusData.count != 0 && (
-            <div className="focus-history-overall">
-              Overall data:
-              <p />
-              Average per day:{' '}
-              {Math.round(historicalFocusData.done / historicalFocusData.count)}
-            </div>
-          )}
-        </div>
-        <MobileNavLink links={[
-          { to: '/', label: '. DASHBOARD' },
-          { to: '/about-focus-timer', label: '. FOCUS INFO' },
-        ]} />
+          </>
+        ) : (
+          <EmptyState message="Keep focusing — your insights will appear here tomorrow." />
+        )}
       </div>
     </div>
   );

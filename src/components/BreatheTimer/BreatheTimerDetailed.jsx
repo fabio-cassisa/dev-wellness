@@ -9,10 +9,11 @@ import {
   handleResetBreatheTimer,
   handleStartBreatheTimer,
 } from './BreatheTimerDispatch';
-import { getYesterdayDate, millisToMinutesAndSeconds } from '../../helpers';
+import { getYesterdayDate, getRecentDays, millisToMinutesAndSeconds } from '../../helpers';
 import useScreenSize from '../../hooks/useScreenSize';
 import { DashLine, ResetIcon } from '../../assets/SVGElements';
-import { MobileNavLink } from '../MobileNavLink';
+import { EmptyState } from '../EmptyState';
+import { WeekDots } from '../WeekDots';
 import './BreatheTimerDetailed.css';
 
 export const BreatheTimerDetailed = () => {
@@ -63,6 +64,13 @@ export const BreatheTimerDetailed = () => {
   const withHistoricalData =
     dataYesterday != null && historicalHabitData.count != 0;
 
+  const recentDays = getRecentDays(historical);
+  const weekDots = recentDays.map(day => ({
+    dayLabel: day.dayLabel,
+    value: day.data ? Math.min(day.data.breatheTimer.breatheTimerCount / 4, 1) : 0,
+    display: day.data ? `${day.data.breatheTimer.breatheTimerCount} sessions` : undefined,
+  }));
+
   return (
     <div className="main-wrapper">
       <div className="app-container">
@@ -100,28 +108,31 @@ export const BreatheTimerDetailed = () => {
         <p className="focus-done-day">
           Breathe timers done today: {breatheTimer.breatheTimerCount}
         </p>
-        {withHistoricalData && <DashLine />}
-        <div className="breathe-history">
-          {dataYesterday != null && (
-            <div className="breathe-history-yesterday">
-              Yesterday&apos;s data:
-              <p />
-              Count: {dataYesterday.breatheTimer.breatheTimerCount}
+        {withHistoricalData ? (
+          <>
+            <WeekDots days={weekDots} label="Last 7 days" />
+            <DashLine />
+            <div className="breathe-history">
+              {dataYesterday != null && (
+                <div className="breathe-history-yesterday">
+                  Yesterday&apos;s data:
+                  <p />
+                  Count: {dataYesterday.breatheTimer.breatheTimerCount}
+                </div>
+              )}
+              {historicalHabitData.count != 0 && (
+                <div className="breathe-history-overall">
+                  Overall data:
+                  <p />
+                  Average per day:{' '}
+                  {Math.round(historicalHabitData.done / historicalHabitData.count)}
+                </div>
+              )}
             </div>
-          )}
-          {historicalHabitData.count != 0 && (
-            <div className="breathe-history-overall">
-              Overall data:
-              <p />
-              Average per day:{' '}
-              {Math.round(historicalHabitData.done / historicalHabitData.count)}
-            </div>
-          )}
-        </div>
-        <MobileNavLink links={[
-          { to: '/', label: '. DASHBOARD' },
-          { to: '/about-breathe-timer', label: '. BREATHE INFO' },
-        ]} />
+          </>
+        ) : (
+          <EmptyState message="Keep breathing — your session history will appear here tomorrow." />
+        )}
       </div>
     </div>
   );

@@ -1,23 +1,23 @@
 //Dashboard that loads in mobile & it's used
 //as a component for Desktop/Tablet
 import useScreenSize from '../hooks/useScreenSize';
-import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { DashLine, SettingsIcon } from '../assets/SVGElements';
+import { Link } from 'react-router-dom';
+import { DashLine } from '../assets/SVGElements';
+import { calculateStreak } from '../helpers';
 import { FocusTimer } from '../components/FocusTimer/FocusTimer';
 import { HabitTracker } from '../components/HabitTracker/HabitTracker';
 import { MoodTracker } from '../components/MoodTracker/MoodTracker';
 import { BreatheTimer } from '../components/BreatheTimer/BreatheTimer';
-import { MobileNavLink } from '../components/MobileNavLink';
 import './Dashboard.css';
 
 
 export const Dashboard = () => {
   const { isMobile } = useScreenSize();
   const settingsState = useSelector(state => state.settings);
-  //Import Header
-  //Import HistoricalCal
-  //Import FocusTimer, Habit,Tracker, MoodTracker, BreatheTimer
+  const historicalData = useSelector(state => state.historical.historicalData);
+  const streak = calculateStreak(historicalData);
+
   return (
     <>
       {isMobile ? (
@@ -27,6 +27,10 @@ export const Dashboard = () => {
             <h2 className="secondary-header">
               Hi {settingsState.name}, ready for today&apos;s session?
             </h2>
+            {streak > 0 && (
+              <div className="streak-badge">🔥 {streak}-day streak</div>
+            )}
+            <Link to="/weekly-summary" className="weekly-link-dashboard">📊 Weekly Summary</Link>
             <DashLine />
             <div className="app-wrapper">
               <FocusTimer />
@@ -34,10 +38,6 @@ export const Dashboard = () => {
               <BreatheTimer />
               <MoodTracker />
             </div>
-            <MobileNavLink links={[
-              { to: '/settings', label: '. SETTINGS' },
-              { to: '/about', label: '. ABOUT' },
-            ]} />
           </div>
         </div>
       ) : (
@@ -47,6 +47,10 @@ export const Dashboard = () => {
             <h2 className="secondary-header">
               Hi {settingsState.name}, ready for today&apos;s session?
             </h2>
+            {streak > 0 && (
+              <div className="streak-badge">🔥 {streak}-day streak</div>
+            )}
+            <Link to="/weekly-summary" className="weekly-link-dashboard">📊 Weekly Summary</Link>
             <div className="app-wrapper">
               <DashLine />
               <FocusTimer />

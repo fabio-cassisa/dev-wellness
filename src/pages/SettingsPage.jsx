@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import { MobileNavLink } from '../components/MobileNavLink';
+import { useState, useCallback } from 'react';
+import { Toast } from '../components/Toast';
+import { ConfirmDialog } from '../components/ConfirmDialog';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -28,13 +29,17 @@ export const SettingsPage = () => {
     settingsState.colorPalette
   );
 
+  // UI feedback state
+  const [showToast, setShowToast] = useState(false);
+  const [showResetDialog, setShowResetDialog] = useState(false);
+
   const handleFactoryReset = () => {
+    setShowResetDialog(false);
     navigate('/');
     dispatch(factoryReset());
   };
 
   const handleSaveChanges = () => {
-    // Dispatch actions to update settings in the store
     dispatch(updateName({ name }));
     dispatch(
       updateFocusTimerLengthMS({
@@ -47,7 +52,10 @@ export const SettingsPage = () => {
       })
     );
     dispatch(updateColorPalette({ colorPalette: selectedPalette }));
+    setShowToast(true);
   };
+
+  const hideToast = useCallback(() => setShowToast(false), []);
 
   return (
     <div className="main-wrapper">
@@ -102,7 +110,6 @@ export const SettingsPage = () => {
               <option value="light">Light</option>
               <option value="teal">Teal</option>
               <option value="earth">Earth</option>
-              {/* Add more options for additional color palettes */}
             </select>
           </div>
         </div>
@@ -110,12 +117,29 @@ export const SettingsPage = () => {
           <button className="app-button" onClick={handleSaveChanges}>
             Save Changes
           </button>
-          <button className="app-button" onClick={handleFactoryReset}>
+          <button
+            className="app-button"
+            onClick={() => setShowResetDialog(true)}
+          >
             Factory Reset
           </button>
         </div>
-        <MobileNavLink to="/" label=". DASHBOARD" />
       </div>
+
+      <Toast
+        message="Settings saved!"
+        visible={showToast}
+        onClose={hideToast}
+      />
+
+      {showResetDialog && (
+        <ConfirmDialog
+          title="Factory Reset"
+          message="This will erase all your data — name, settings, timers, habits, mood history, everything. This cannot be undone."
+          onConfirm={handleFactoryReset}
+          onCancel={() => setShowResetDialog(false)}
+        />
+      )}
     </div>
   );
 };
