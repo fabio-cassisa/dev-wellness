@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { clsx } from 'clsx';
 
 import { BreathCircle } from '../../assets/SVGElements';
 import { millisToMinutesAndSeconds } from '../../helpers';
@@ -19,7 +20,7 @@ export const BreatheTimer = () => {
   );
 
   return (
-    <div className="tile-wrapper">
+    <div className={clsx('tile-wrapper', isBreatheTimerRunning && 'tile-active')}>
       <Link to="/breathe-timer">
         <div className="tile-main-name">. BREATH</div>
         <div className="breath-timer-done-counter">{breatheTimerCount}</div>

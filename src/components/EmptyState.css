@@ -1,0 +1,24 @@
+/* Empty state placeholder for sections with no data yet */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem 1rem;
+  opacity: 0.6;
+}
+
+.empty-state-icon {
+  font-size: 2rem;
+}
+
+.empty-state-text {
+  color: var(--primary-text-color);
+  font-family: 'Inter', Helvetica, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  text-align: center;
+  line-height: 1.5;
+  max-width: 280px;
+  margin: 0;
+}

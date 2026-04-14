@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { clsx } from 'clsx';
 
 import { FocusCircle } from '../../assets/SVGElements';
 import { millisToMinutesAndSeconds } from '../../helpers';
@@ -17,7 +18,7 @@ export const FocusTimer = () => {
   );
 
   return (
-    <div className="tile-wrapper">
+    <div className={clsx('tile-wrapper', isFocusTimerRunning && 'tile-active')}>
       <Link to="/focus-timer">
         <div className="tile-main-name">. FOCUS</div>
         <div className="focus-timer-done-counter">{focusTimerCount}</div>

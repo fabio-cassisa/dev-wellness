@@ -1,6 +1,6 @@
 .range-mood {
   width: 70%;
-  margin: 3vmin auto;
+  margin: 2vmin auto;
   text-align: center;
   color: var(--primary-text-color);
   font-family: 'Inter', Helvetica, sans-serif;
@@ -8,13 +8,71 @@
   font-weight: 400;
   letter-spacing: 0.36px;
   line-height: normal;
-  margin-bottom: 2vmin;
 }
 
-input[type='range'] {
+.range-mood-label {
+  margin-bottom: 0.5rem;
+}
+
+.range-slider-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.range-emoji {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+/* Custom range slider */
+.custom-range {
+  -webkit-appearance: none;
+  appearance: none;
   width: 100%;
-  height: 1vmin; /* Set the height of the track */
-  --webkit-appearance: none; /* Remove default styles in WebKit browsers */
+  height: 6px;
+  border-radius: 3px;
+  background: var(--tertiary-bg-color);
+  outline: none;
+  cursor: pointer;
+}
+
+.custom-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--primary-accent-color);
+  cursor: pointer;
+  border: 2px solid var(--secondary-bg-color);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.custom-range::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+}
+
+.custom-range::-webkit-slider-thumb:active {
+  transform: scale(1.1);
+}
+
+.custom-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--primary-accent-color);
+  cursor: pointer;
+  border: 2px solid var(--secondary-bg-color);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.custom-range::-moz-range-track {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--tertiary-bg-color);
 }
 
 .mood-history {
@@ -44,16 +102,23 @@ input[type='range'] {
   .range-mood {
     font-size: 2vmin;
   }
+
+  .range-emoji {
+    font-size: 1.2rem;
+  }
 }
 
 /* Media query for larger screens (e.g., desktops) */
 @media only screen and (min-width: 1025px) {
-  /* You can add styles specific to larger screens here if needed */
   .mood-history {
     font-size: 2vmin;
   }
 
   .range-mood {
     font-size: 2.5vmin;
+  }
+
+  .range-emoji {
+    font-size: 1.2rem;
   }
 }

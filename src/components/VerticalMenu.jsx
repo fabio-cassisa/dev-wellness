@@ -16,6 +16,7 @@ export const  VerticalMenu = () => {
                 <Link className="habit" to="/habit-tracker">. HABIT</Link>
                 <Link className="breath" to="/breathe-timer">. BREATHE</Link>
               </div>
+              <Link className="weekly-link" to="/weekly-summary">WEEKLY</Link>
               <Link className="settings-link" to="/settings">SETTINGS</Link>
             </div>
         </div>

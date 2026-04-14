@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleHabit } from '../../reducers/habits';
-import { getYesterdayDate } from '../../helpers';
+import { getYesterdayDate, getRecentDays } from '../../helpers';
 import { DashLine } from '../../assets/SVGElements';
-import { MobileNavLink } from '../MobileNavLink';
+import { EmptyState } from '../EmptyState';
+import { WeekDots } from '../WeekDots';
 import './HabitTrackerDetailed.css';
 
 export const HabitTrackerDetailed = () => {
@@ -38,6 +39,20 @@ export const HabitTrackerDetailed = () => {
   const withHistoricalData =
     dataYesterday != null && historicalHabitData.count != 0;
 
+  // Build 7-day dot data — normalize by habits completed / total habits
+  const recentDays = getRecentDays(historical);
+  const weekDots = recentDays.map(day => {
+    if (!day.data) return { dayLabel: day.dayLabel, value: 0 };
+    const dayHabits = day.data.habits.habits;
+    const done = dayHabits.filter(h => h.isComplete).length;
+    const total = dayHabits.length || 1;
+    return {
+      dayLabel: day.dayLabel,
+      value: done / total,
+      display: `${done}/${total} completed`,
+    };
+  });
+
   return (
     <div className="main-wrapper">
       <div className="app-container">
@@ -67,36 +82,39 @@ export const HabitTrackerDetailed = () => {
             );
           })}
         </div>
-        {withHistoricalData && <DashLine />}
-        <div className="habit-history">
-          {dataYesterday != null && (
-            <div className="habit-history-yesterday">
-              Yesterday&apos;s data:
-              <p />
-              🏆:{' '}
-              {
-                dataYesterday.habits.habits.filter(habit => habit.isComplete)
-                  .length
-              }{' '}
-              / {dataYesterday.habits.habits.length}
+        {withHistoricalData ? (
+          <>
+            <WeekDots days={weekDots} label="Last 7 days" />
+            <DashLine />
+            <div className="habit-history">
+              {dataYesterday != null && (
+                <div className="habit-history-yesterday">
+                  Yesterday&apos;s data:
+                  <p />
+                  🏆:{' '}
+                  {
+                    dataYesterday.habits.habits.filter(habit => habit.isComplete)
+                      .length
+                  }{' '}
+                  / {dataYesterday.habits.habits.length}
+                </div>
+              )}
+              {historicalHabitData.count != 0 && (
+                <div className="habit-history-overall">
+                  Overall data:
+                  <p />
+                  🏆:{' '}
+                  {Math.round(
+                    historicalHabitData.done / historicalHabitData.count
+                  )}{' '}
+                  / {historicalHabitData.habitCount / historicalHabitData.count}
+                </div>
+              )}
             </div>
-          )}
-          {historicalHabitData.count != 0 && (
-            <div className="habit-history-overall">
-              Overall data:
-              <p />
-              🏆:{' '}
-              {Math.round(
-                historicalHabitData.done / historicalHabitData.count
-              )}{' '}
-              / {historicalHabitData.habitCount / historicalHabitData.count}
-            </div>
-          )}
-        </div>
-        <MobileNavLink links={[
-          { to: '/', label: '. DASHBOARD' },
-          { to: '/about-habit-tracker', label: '. HABIT INFO' },
-        ]} />
+          </>
+        ) : (
+          <EmptyState message="Check off your habits daily — your streaks and stats will show up here." />
+        )}
       </div>
     </div>
   );

@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { MobileNavLink } from '../MobileNavLink';
 import {
   setEnergyLevel,
   setMoodLevel,
   setOverwhelmedLevel,
 } from '../../reducers/mood';
-import { getYesterdayDate } from '../../helpers';
+import { getYesterdayDate, getRecentDays } from '../../helpers';
 import { DashLine } from '../../assets/SVGElements';
+import { EmptyState } from '../EmptyState';
+import { WeekDots } from '../WeekDots';
 import './MoodTrackerDetailed.css';
 
 export const MoodTrackerDetailed = () => {
@@ -103,6 +104,20 @@ export const MoodTrackerDetailed = () => {
   const withHistoricalData =
     dataYesterday != null && historicalMoodData.count != 0;
 
+  // Build 7-day dot data — normalize composite mood score to 0-1
+  // composite = mood + energy - overwhelmed, range: -3 to 9
+  const recentDays = getRecentDays(historical);
+  const weekDots = recentDays.map(day => {
+    if (!day.data || !day.data.mood) return { dayLabel: day.dayLabel, value: 0 };
+    const m = day.data.mood;
+    const composite = parseInt(m.moodLevel) + parseInt(m.energyLevel) - parseInt(m.overwhelmedLevel);
+    return {
+      dayLabel: day.dayLabel,
+      value: Math.max(0, Math.min(1, (composite + 3) / 12)),
+      display: `mood ${m.moodLevel}, energy ${m.energyLevel}, stress ${m.overwhelmedLevel}`,
+    };
+  });
+
   return (
     <div className="main-wrapper">
       <div className="app-container">
@@ -112,67 +127,85 @@ export const MoodTrackerDetailed = () => {
         <h2 className="secondary-header">How are you feeling today?</h2>
         <div className="today-tile-wrapper"></div>
         <div className="range-mood">
-          <div>Mood Level: {mood.moodLevel}</div>
-          <input
-            type="range"
-            aria-label="mood level input"
-            min={1}
-            max={5}
-            onChange={e => handleUpdateMoodLevel(e.target.value)}
-            value={mood.moodLevel}
-          ></input>
+          <div className="range-mood-label">Mood Level: {mood.moodLevel}</div>
+          <div className="range-slider-wrapper">
+            <span className="range-emoji">😐</span>
+            <input
+              type="range"
+              className="custom-range"
+              aria-label="mood level input"
+              min={1}
+              max={5}
+              onChange={e => handleUpdateMoodLevel(e.target.value)}
+              value={mood.moodLevel}
+            />
+            <span className="range-emoji">😊</span>
+          </div>
         </div>
         <div className="range-mood">
-          <div>Energy Level: {mood.energyLevel}</div>
-          <input
-            type="range"
-            aria-label="energy level input"
-            min={1}
-            max={5}
-            onChange={e => handleUpdateEnergyLevel(e.target.value)}
-            value={mood.energyLevel}
-          ></input>
+          <div className="range-mood-label">Energy Level: {mood.energyLevel}</div>
+          <div className="range-slider-wrapper">
+            <span className="range-emoji">🔋</span>
+            <input
+              type="range"
+              className="custom-range"
+              aria-label="energy level input"
+              min={1}
+              max={5}
+              onChange={e => handleUpdateEnergyLevel(e.target.value)}
+              value={mood.energyLevel}
+            />
+            <span className="range-emoji">⚡</span>
+          </div>
         </div>
         <div className="range-mood">
-          <div>Overwhelmed Level: {mood.overwhelmedLevel}</div>
-          <input
-            type="range"
-            aria-label="overwhelmed level input"
-            min={1}
-            max={5}
-            onChange={e => handleUpdateOverwhelmedLevel(e.target.value)}
-            value={mood.overwhelmedLevel}
-          ></input>
+          <div className="range-mood-label">Overwhelmed Level: {mood.overwhelmedLevel}</div>
+          <div className="range-slider-wrapper">
+            <span className="range-emoji">😌</span>
+            <input
+              type="range"
+              className="custom-range"
+              aria-label="overwhelmed level input"
+              min={1}
+              max={5}
+              onChange={e => handleUpdateOverwhelmedLevel(e.target.value)}
+              value={mood.overwhelmedLevel}
+            />
+            <span className="range-emoji">😰</span>
+          </div>
         </div>
-        {withHistoricalData && <DashLine />}
-        <div className="mood-history">
-          {dataYesterday != null && (
-            <div className="mood-history-yesterday">
-              Yesterday&apos;s data:
-              <ul>
-                <li>general mood: {generMood}</li>
-                <li>mood: {dataYesterdayMood} / 5</li>
-                <li>energy: {dataYesterdayEnergy} / 5</li>
-                <li>overwhelmed: {dataYesterdayOver} / 5</li>
-              </ul>
+        {withHistoricalData ? (
+          <>
+            <WeekDots days={weekDots} label="Last 7 days" />
+            <DashLine />
+            <div className="mood-history">
+              {dataYesterday != null && (
+                <div className="mood-history-yesterday">
+                  Yesterday&apos;s data:
+                  <ul>
+                    <li>general mood: {generMood}</li>
+                    <li>mood: {dataYesterdayMood} / 5</li>
+                    <li>energy: {dataYesterdayEnergy} / 5</li>
+                    <li>overwhelmed: {dataYesterdayOver} / 5</li>
+                  </ul>
+                </div>
+              )}
+              {historicalMoodData.count != 0 && (
+                <div className="mood-history-overall">
+                  Overall data:
+                  <ul>
+                    <li>general mood: {generMoodFive}</li>
+                    <li>mood: {dataMoodFive} / 5</li>
+                    <li>energy: {dataEnergyFive} / 5</li>
+                    <li>overwhelmed: {dataOverFive} / 5</li>
+                  </ul>
+                </div>
+              )}
             </div>
-          )}
-          {historicalMoodData.count != 0 && (
-            <div className="mood-history-overall">
-              Overall data:
-              <ul>
-                <li>general mood: {generMoodFive}</li>
-                <li>mood: {dataMoodFive} / 5</li>
-                <li>energy: {dataEnergyFive} / 5</li>
-                <li>overwhelmed: {dataOverFive} / 5</li>
-              </ul>
-            </div>
-          )}
-        </div>
-        <MobileNavLink links={[
-          { to: '/', label: '. DASHBOARD' },
-          { to: '/about-mood-tracker', label: '. MOOD INFO' },
-        ]} />
+          </>
+        ) : (
+          <EmptyState message="Track your mood daily — your patterns and trends will appear here." />
+        )}
       </div>
     </div>
   );

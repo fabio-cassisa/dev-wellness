@@ -1,0 +1,61 @@
+/* Fixed bottom navigation bar — mobile only */
+.mobile-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background-color: var(--secondary-bg-color);
+  border-top: 1px solid var(--tertiary-bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 0.5rem;
+  padding-bottom: env(safe-area-inset-bottom, 0);
+  z-index: 900;
+}
+
+.mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  text-decoration: none;
+  color: var(--primary-text-color);
+  opacity: 0.5;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  padding: 0.25rem 0.5rem;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-nav-item:hover {
+  text-decoration: none;
+}
+
+.mobile-nav-active {
+  opacity: 1;
+}
+
+.mobile-nav-icon {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.mobile-nav-label {
+  font-family: 'Inter', Helvetica, sans-serif;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* Center home button — slightly elevated */
+.mobile-nav-center .mobile-nav-icon {
+  font-size: 1.6rem;
+  color: var(--primary-accent-color);
+}
+
+.mobile-nav-center.mobile-nav-active .mobile-nav-icon {
+  transform: scale(1.1);
+}
