@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MobileToDashBTN } from '../components/MobileBTN';
+import { MobileNavLink } from '../components/MobileNavLink';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -114,7 +114,7 @@ export const SettingsPage = () => {
             Factory Reset
           </button>
         </div>
-        <MobileToDashBTN />
+        <MobileNavLink to="/" label=". DASHBOARD" />
       </div>
     </div>
   );

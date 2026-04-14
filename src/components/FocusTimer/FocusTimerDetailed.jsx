@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { MobileFocusBTN } from '../MobileBTN';
+import { MobileNavLink } from '../MobileNavLink';
 import {
   CircularProgressbarWithChildren,
   buildStyles,
@@ -117,7 +117,10 @@ export const FocusTimerDetailed = () => {
             </div>
           )}
         </div>
-        <MobileFocusBTN />
+        <MobileNavLink links={[
+          { to: '/', label: '. DASHBOARD' },
+          { to: '/about-focus-timer', label: '. FOCUS INFO' },
+        ]} />
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ import {
 import { getYesterdayDate, millisToMinutesAndSeconds } from '../../helpers';
 import useScreenSize from '../../hooks/useScreenSize';
 import { DashLine, ResetIcon } from '../../assets/SVGElements';
-import { MobileBreatheBTN } from '../MobileBTN';
+import { MobileNavLink } from '../MobileNavLink';
 import './BreatheTimerDetailed.css';
 
 export const BreatheTimerDetailed = () => {
@@ -118,7 +118,10 @@ export const BreatheTimerDetailed = () => {
             </div>
           )}
         </div>
-        <MobileBreatheBTN />
+        <MobileNavLink links={[
+          { to: '/', label: '. DASHBOARD' },
+          { to: '/about-breathe-timer', label: '. BREATHE INFO' },
+        ]} />
       </div>
     </div>
   );

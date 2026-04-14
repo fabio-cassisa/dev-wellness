@@ -8,7 +8,7 @@ import { FocusTimer } from '../components/FocusTimer/FocusTimer';
 import { HabitTracker } from '../components/HabitTracker/HabitTracker';
 import { MoodTracker } from '../components/MoodTracker/MoodTracker';
 import { BreatheTimer } from '../components/BreatheTimer/BreatheTimer';
-import { MobileInfoBTN } from '../components/MobileBTN';
+import { MobileNavLink } from '../components/MobileNavLink';
 import './Dashboard.css';
 
 
@@ -34,7 +34,10 @@ export const Dashboard = () => {
               <BreatheTimer />
               <MoodTracker />
             </div>
-            <MobileInfoBTN />
+            <MobileNavLink links={[
+              { to: '/settings', label: '. SETTINGS' },
+              { to: '/about', label: '. ABOUT' },
+            ]} />
           </div>
         </div>
       ) : (
