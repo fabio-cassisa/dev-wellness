@@ -90,13 +90,13 @@
 /* Media query for medium-sized screens (e.g., tablets) */
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
   .focus-detailed-circular-progress-bar {
-    width: clamp(160px, 50%, 280px);
+    width: clamp(180px, 75%, 300px);
   }
 }
 
 /* Media query for larger screens (e.g., desktops) */
 @media only screen and (min-width: 1025px) {
   .focus-detailed-circular-progress-bar {
-    width: clamp(160px, 60%, 300px);
+    width: clamp(200px, 80%, 320px);
   }
 }
