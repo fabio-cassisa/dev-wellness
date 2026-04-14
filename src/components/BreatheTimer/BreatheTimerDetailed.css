@@ -76,7 +76,7 @@
 .breathe-history {
   color: var(--primary-text-color);
   font-family: 'Inter', Helvetica, sans-serif;
-  font-size: 3.5vmin;
+  font-size: var(--text-caption);
   font-weight: 400;
   display: flex;
   gap: 1rem;
@@ -94,31 +94,14 @@
 
 /* Media query for medium-sized screens (e.g., tablets) */
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
-  .focus-timer-elapsing {
-    font-size: 3vmin;
-  }
-
   .pulsing:after {
-    font-size: 2vmin;
-  }
-
-  .breathe-history {
     font-size: 2vmin;
   }
 }
 
 /* Media query for larger screens (e.g., desktops) */
 @media only screen and (min-width: 1025px) {
-  /* You can add styles specific to larger screens here if needed */
-  .focus-timer-elapsing {
-    font-size: 4vmin;
-  }
-
   .pulsing:after {
-    font-size: 2vmin;
-  }
-
-  .breathe-history {
     font-size: 2vmin;
   }
 }
