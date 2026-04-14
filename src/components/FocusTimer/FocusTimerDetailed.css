@@ -19,8 +19,8 @@
 
 .focus-detailed-circular-progress-bar {
   margin: 0 auto;
-  width: min(55vmin, 260px);
-  height: min(55vmin, 260px);
+  width: clamp(160px, 55%, 300px);
+  aspect-ratio: 1;
   text-align: center;
   border-radius: 100%;
   box-shadow: -20px -20px 60px var(--secondary-accent-color),
@@ -87,19 +87,13 @@
 /* Media query for medium-sized screens (e.g., tablets) */
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
   .focus-detailed-circular-progress-bar {
-    width: 20vw;
-    height: 20vw;
-    box-shadow: -30px -30px 80px var(--secondary-accent-color),
-      30px 30px 80px var(--secondary-accent-color);
+    width: clamp(160px, 50%, 280px);
   }
 }
 
 /* Media query for larger screens (e.g., desktops) */
 @media only screen and (min-width: 1025px) {
   .focus-detailed-circular-progress-bar {
-    width: 25vmin;
-    height: 25vmin;
-    box-shadow: -30px -30px 80px var(--secondary-accent-color),
-      30px 30px 80px var(--secondary-accent-color);
+    width: clamp(160px, 60%, 300px);
   }
 }
