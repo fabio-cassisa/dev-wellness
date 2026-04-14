@@ -93,10 +93,13 @@ export const BreatheTimerDetailed = () => {
           <CircularProgressbarWithChildren
             value={percentage}
             circleRatio={0.75}
+            strokeWidth={6}
             styles={buildStyles({
-              // How long animation takes to go from one percentage to another, in seconds
               pathTransitionDuration: 0.5,
               rotation: 1 / 2 + 1 / 8,
+              strokeLinecap: 'butt',
+              trailColor: 'var(--secondary-accent-color)',
+              pathColor: 'var(--primary-accent-color)',
             })}
           >
             <h1 className="focus-timer-elapsing">

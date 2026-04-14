@@ -44,12 +44,6 @@
   margin: 0;
 }
 
-.CircularProgressbar-path {
-  stroke: var(--primary-accent-color);
-}
-.CircularProgressbar-trail {
-  stroke: var(--secondary-accent-color);
-}
 .CircularProgressbar-text {
   fill: var(--primary-text-color);
 }

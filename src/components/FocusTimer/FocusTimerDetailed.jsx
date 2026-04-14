@@ -94,9 +94,12 @@ export const FocusTimerDetailed = () => {
         >
           <CircularProgressbarWithChildren
             value={percentage}
+            strokeWidth={6}
             styles={buildStyles({
-              // How long animation takes to go from one percentage to another, in seconds
               pathTransitionDuration: 0.5,
+              strokeLinecap: 'butt',
+              trailColor: 'var(--secondary-accent-color)',
+              pathColor: 'var(--primary-accent-color)',
             })}
           >
             <h1 className="focus-timer-elapsing">
