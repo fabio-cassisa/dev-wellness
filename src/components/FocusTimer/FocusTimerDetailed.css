@@ -19,26 +19,26 @@
 
 .focus-detailed-circular-progress-bar {
   margin: 0 auto;
-  width: 65vmin;
-  height: 65vmin;
+  width: min(55vmin, 260px);
+  height: min(55vmin, 260px);
   text-align: center;
   border-radius: 100%;
-  box-shadow: -50px -50px 100px var(--secondary-accent-color),
-    50px 50px 100px var(--secondary-accent-color);
+  box-shadow: -20px -20px 60px var(--secondary-accent-color),
+    20px 20px 60px var(--secondary-accent-color);
   cursor: pointer;
 }
 
 .focus-timer-elapsing {
   color: var(--primary-text-color);
-  font-size: 7vmin;
+  font-size: clamp(1.5rem, 7vmin, 2.5rem);
 }
 
 .focus-timer-next {
   font-family: 'Inter', Helvetica, sans-serif;
   color: var(--primary-text-color);
-  font-size: 4vmin;
+  font-size: clamp(0.75rem, 4vmin, 1.25rem);
   font-weight: 600;
-  letter-spacing: 0.36px;
+  letter-spacing: 0.2em;
 }
 
 .CircularProgressbar-path {
@@ -89,6 +89,8 @@
   .focus-detailed-circular-progress-bar {
     width: 20vw;
     height: 20vw;
+    box-shadow: -30px -30px 80px var(--secondary-accent-color),
+      30px 30px 80px var(--secondary-accent-color);
   }
 }
 
@@ -97,5 +99,7 @@
   .focus-detailed-circular-progress-bar {
     width: 25vmin;
     height: 25vmin;
+    box-shadow: -30px -30px 80px var(--secondary-accent-color),
+      30px 30px 80px var(--secondary-accent-color);
   }
 }
