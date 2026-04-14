@@ -1,95 +1,240 @@
+/* Onboarding step pages */
+
+/* Fade-in for step transitions */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.start-page {
+  animation: fadeInUp 0.35s ease-out;
+}
+
 .start-page .main-header {
   width: 100%;
 }
 
+.start-page .main-app-name {
+  padding-top: 3%;
+}
+
 .start-page .secondary-header {
-  padding: 5%;
+  padding: 3% 5% 0;
+  font-size: var(--text-heading);
+  font-weight: 500;
+  line-height: 1.4;
 }
 
 .start-page-input-wrapper {
   width: 100%;
   text-align: center;
+  margin-top: 1.5rem;
 }
 
 .start-page-error {
   width: 100%;
-  height: 3vmin;
+  min-height: 1.5em;
   text-align: center;
-  color: var(--primary-text-color);
-  font-size: 2vmin;
+  color: var(--secondary-accent-color);
+  font-size: var(--text-caption);
+  margin-top: 0.5rem;
 }
 
 .start-page-input {
-  width: 50vmin;
+  width: min(80%, 20rem);
   border: none;
   text-align: center;
   background-color: var(--secondary-bg-color);
-  border-bottom: 1px solid var(--primary-text-color);
-  padding: 5px 10px;
+  border-bottom: 2px solid var(--primary-text-color);
+  padding: 0.5rem 0.75rem;
   outline: none;
   color: var(--primary-text-color);
-  font-size: 4vmin;
+  font-family: 'Inter', Helvetica, sans-serif;
+  font-size: var(--text-heading);
+  transition: border-color 0.2s ease;
 }
 
-.colorPaletteSelect {
-  font-size: 4vmin;
-  padding: 1vmin;
+.start-page-input:focus {
+  border-bottom-color: var(--primary-accent-color);
+}
+
+.start-page-button {
+  margin-top: 1.5rem;
 }
 
 .start-page-button button {
-  margin-top: 2vmin;
-  font-size: 3vmin;
+  min-width: 7rem;
 }
 
-/* Media query for smaller screens (e.g., mobile devices) */
+/* Step dots progress indicator */
+.step-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.5rem 0 0.5rem;
+}
+
+.step-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--tertiary-bg-color);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.step-dot.active {
+  background-color: var(--primary-accent-color);
+  transform: scale(1.3);
+}
+
+.step-dot.completed {
+  background-color: var(--secondary-accent-color);
+}
+
+/* Palette swatches */
+.palette-swatches {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.palette-swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  padding: 0.75rem;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  transition: border-color 0.2s ease, transform 0.15s ease;
+  background: none;
+}
+
+.palette-swatch:hover {
+  transform: translateY(-2px);
+}
+
+.palette-swatch.selected {
+  border-color: var(--primary-accent-color);
+}
+
+.palette-swatch-preview {
+  display: flex;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.palette-swatch-preview span {
+  flex: 1;
+}
+
+.palette-swatch-label {
+  font-size: var(--text-caption);
+  color: var(--primary-text-color);
+  text-transform: capitalize;
+}
+
+/* Timer range slider */
+.timer-slider-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: min(80%, 20rem);
+  margin: 1.5rem auto 0;
+}
+
+.timer-value-display {
+  font-size: var(--text-hero);
+  font-weight: 700;
+  color: var(--primary-text-color);
+  letter-spacing: -0.02em;
+}
+
+.timer-value-display span {
+  font-size: var(--text-body);
+  font-weight: 400;
+  opacity: 0.7;
+  margin-left: 0.25rem;
+}
+
+.timer-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--tertiary-bg-color);
+  outline: none;
+  cursor: pointer;
+}
+
+.timer-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--primary-accent-color);
+  cursor: pointer;
+  border: 2px solid var(--secondary-bg-color);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.timer-range::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+}
+
+.timer-range::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--primary-accent-color);
+  cursor: pointer;
+  border: 2px solid var(--secondary-bg-color);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.timer-range::-moz-range-track {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--tertiary-bg-color);
+}
+
+.timer-range-labels {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: var(--text-caption);
+  color: var(--secondary-accent-color);
+}
+
+/* Mobile adjustments */
 @media only screen and (max-width: 767px) {
   .start-page .main-header {
     padding-top: 2%;
   }
 
-  .start-page .secondary-header {
-    padding-top: 2%;
-  }
-
   .start-page .main-app-name {
-    margin-top: 4vmin;
-    font-size: 10vmin;
+    padding-top: 8%;
   }
 
-  .start-page .secondary-header {
-    font-size: 8vmin;
-  }
-
-  .start-page-input {
-    font-size: 8vmin;
-  }
-
-  .colorPaletteSelect {
-    font-size: 8vmin;
-    padding: 1vmin;
-  }
-
-  .start-page-button button {
-    margin-top: 4vmin;
-    font-size: 5vmin;
-  }
-
-  .start-page-error {
-    width: 100%;
-    height: 5vmin;
-    text-align: center;
-    color: var(--primary-text-color);
-    font-size: 4vmin;
-  }
-}
-
-/* Media query for medium-sized screens (e.g., tablets) */
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
-  .about-header {
-    font-size: 3vmin;
-  }
-
-  .about-paragraph {
-    font-size: 2vmin;
+  .palette-swatch-preview {
+    width: 56px;
+    height: 56px;
   }
 }

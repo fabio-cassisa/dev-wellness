@@ -1,6 +1,6 @@
 import { PropTypes } from 'prop-types';
 import { useState } from 'react';
-
+import { StepDots } from './StepDots';
 import './Start.css';
 
 export const StartPageName = ({ name, setName, page, setPage }) => {
@@ -38,8 +38,9 @@ export const StartPageName = ({ name, setName, page, setPage }) => {
 
   return (
     <div className="start-page">
+      <StepDots currentStep={0} />
       <header className="main-header">
-        <div className="main-app-name">Welcome to DevWellnessHub!</div>
+        <div className="main-app-name">DevWellnessHub</div>
       </header>
       <h1 className="secondary-header">What should we call you?</h1>
 
@@ -49,13 +50,15 @@ export const StartPageName = ({ name, setName, page, setPage }) => {
           className="start-page-input"
           type="text"
           aria-label="Name"
+          placeholder="Your name"
+          autoFocus
           onKeyUp={handleKeyUp}
           onChange={e => {
             setName(e.target.value.trimStart());
           }}
           value={name}
           data-1p-ignore
-        ></input>
+        />
         <div className="start-page-error">{error}</div>
         <div className="start-page-button">
           <button

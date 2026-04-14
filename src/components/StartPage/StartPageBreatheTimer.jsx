@@ -1,84 +1,64 @@
 import { PropTypes } from 'prop-types';
-import './Start.css';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateBreatheTimerLengthMS } from '../../reducers/settings';
-import { useState } from 'react';
+import { StepDots } from './StepDots';
+import './Start.css';
 
 export const StartPageBreatheTimer = ({
   handleSubmitName,
   onSetupComplete,
 }) => {
   const dispatch = useDispatch();
-  const [error, setError] = useState('');
   const settingsState = useSelector(state => state.settings);
 
-  const [breatheTimerLength, setBreatheTimerLength] = useState(
-    settingsState.breatheTimerLengthMS / (60 * 1000) // convert milliseconds to minutes
+  const [breatheMinutes, setBreatheMinutes] = useState(
+    settingsState.breatheTimerLengthMS / (60 * 1000)
   );
 
-  const validate = input => {
-    if (input === '') {
-      setError('Input required');
-      return true;
-    } else if (input === '0') {
-      setError('Breathe timer should be at least 1 min long');
-      return true;
-    } else if (parseInt(input) > 60) {
-      setError('Breathe timer should be 60 min or less');
-      return true;
-    }
-    setError('');
-    return false;
-  };
-
-  const handleKeyUp = e => {
-    validate(e.target.value);
-    if (e.key === 'Enter') {
-      handleBreatheFocusTimerLength();
-    }
-  };
-
-  const handleBreatheFocusTimerLength = () => {
-    const hasError = validate(breatheTimerLength);
-    if (!hasError) {
-      dispatch(
-        updateBreatheTimerLengthMS({
-          breatheTimerLengthMS: breatheTimerLength * 60 * 1000, // convert minutes to milliseconds
-        })
-      );
-      handleSubmitName();
-      onSetupComplete();
-    }
+  const handleFinish = () => {
+    dispatch(
+      updateBreatheTimerLengthMS({
+        breatheTimerLengthMS: breatheMinutes * 60 * 1000,
+      })
+    );
+    handleSubmitName();
+    onSetupComplete();
   };
 
   return (
     <div className="start-page">
-      <header className="main-header"></header>
+      <StepDots currentStep={3} />
+      <header className="main-header">
+        <div className="main-app-name">Breathe Timer</div>
+      </header>
       <h1 className="secondary-header">
-        Mindful breathing is a simple yet transformative practice that taps into
-        the restorative potential of each breath.
-        <p />
-        How long do you want each break to be?
+        How long should each breathing break be?
       </h1>
+
       <div className="start-page-input-wrapper">
-        <input
-          onKeyUp={handleKeyUp}
-          className="start-page-input"
-          aria-label="Breathe Timer length"
-          type="number"
-          value={breatheTimerLength}
-          min="1"
-          onChange={e => {
-            setBreatheTimerLength(e.target.value);
-          }}
-        ></input>
-        <div className="start-page-error">{error}</div>
+        <div className="timer-slider-wrapper">
+          <div className="timer-value-display">
+            {breatheMinutes}<span>min</span>
+          </div>
+          <input
+            className="timer-range"
+            type="range"
+            min="1"
+            max="60"
+            value={breatheMinutes}
+            aria-label="Breathe Timer length in minutes"
+            onChange={e => setBreatheMinutes(Number(e.target.value))}
+          />
+          <div className="timer-range-labels">
+            <span>1 min</span>
+            <span>60 min</span>
+          </div>
+        </div>
+
         <div className="start-page-button">
-          <button
-            className="app-button"
-            onClick={handleBreatheFocusTimerLength}
-          >
-            Next
+          <button className="app-button" onClick={handleFinish}>
+            Let's go
           </button>
         </div>
       </div>
