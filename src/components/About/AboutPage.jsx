@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MobileNavLink } from '../MobileNavLink';
 import useScreenSize from '../../hooks/useScreenSize';
 import './About.css';
 
@@ -24,7 +23,15 @@ export const AboutPage = ({ title, content, desktopRedirect, desktop }) => {
           <div className="about-header">{title}</div>
         </div>
         <div className="about-paragraph">{content}</div>
-        {!desktop && <MobileNavLink to="../" label=". BACK" />}
+        {!desktop && (
+          <button
+            className="app-button"
+            onClick={() => navigate(-1)}
+            style={{ marginTop: '1.5rem' }}
+          >
+            ← Back
+          </button>
+        )}
       </div>
     </div>
   );

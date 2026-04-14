@@ -121,6 +121,16 @@ body {
   width: 100%;
 }
 
+/* Page transition — fade in on route change */
+@keyframes pageFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.page-transition {
+  animation: pageFadeIn 0.25s ease-out;
+}
+
 /* Media query for smaller screens (e.g., mobile devices) */
 @media only screen and (max-width: 767px) {
   .main-wrapper {

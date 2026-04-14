@@ -1,6 +1,6 @@
 // Homepage layout — responsive shell for mobile (single column) and desktop (three columns)
 import useScreenSize from '../hooks/useScreenSize';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { useFocusTimerTick } from '../hooks/useFocusTimerTick';
 import { useBreatheTimerTick } from '../hooks/useBreatheTimerTick';
 import { VerticalMenu } from '../components/VerticalMenu';
@@ -18,6 +18,7 @@ import './DesktopHomepage.css';
 
 export const DesktopHomepage = () => {
   const { isMobile } = useScreenSize();
+  const location = useLocation();
 
   // Timer tick logic — runs in background regardless of which page is visible
   useFocusTimerTick();
@@ -26,20 +27,22 @@ export const DesktopHomepage = () => {
   if (isMobile) {
     return (
       <>
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/focus-timer" element={<FocusTimerDetailed />} />
-          <Route path="/habit-tracker" element={<HabitTrackerDetailed />} />
-          <Route path="/breathe-timer" element={<BreatheTimerDetailed />} />
-          <Route path="/mood-tracker" element={<MoodTrackerDetailed />} />
-          <Route path="/weekly-summary" element={<WeeklySummary />} />
-          <Route path="/settings" element={<SettingsPage />} />
-          <Route path="/about" element={<AboutPage {...ABOUT_CONTENT.general} />} />
-          <Route path="/about-focus-timer" element={<AboutPage {...ABOUT_CONTENT.focus} />} />
-          <Route path="/about-habit-tracker" element={<AboutPage {...ABOUT_CONTENT.habits} />} />
-          <Route path="/about-breathe-timer" element={<AboutPage {...ABOUT_CONTENT.breathe} />} />
-          <Route path="/about-mood-tracker" element={<AboutPage {...ABOUT_CONTENT.mood} />} />
-        </Routes>
+        <div className="page-transition" key={location.key}>
+          <Routes location={location}>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/focus-timer" element={<FocusTimerDetailed />} />
+            <Route path="/habit-tracker" element={<HabitTrackerDetailed />} />
+            <Route path="/breathe-timer" element={<BreatheTimerDetailed />} />
+            <Route path="/mood-tracker" element={<MoodTrackerDetailed />} />
+            <Route path="/weekly-summary" element={<WeeklySummary />} />
+            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/about" element={<AboutPage {...ABOUT_CONTENT.general} />} />
+            <Route path="/about-focus-timer" element={<AboutPage {...ABOUT_CONTENT.focus} />} />
+            <Route path="/about-habit-tracker" element={<AboutPage {...ABOUT_CONTENT.habits} />} />
+            <Route path="/about-breathe-timer" element={<AboutPage {...ABOUT_CONTENT.breathe} />} />
+            <Route path="/about-mood-tracker" element={<AboutPage {...ABOUT_CONTENT.mood} />} />
+          </Routes>
+        </div>
         <MobileBottomNav />
       </>
     );
@@ -48,8 +51,8 @@ export const DesktopHomepage = () => {
   return (
     <div className="desktop-wrapper">
       <VerticalMenu />
-      <div>
-        <Routes>
+      <div className="page-transition" key={location.key}>
+        <Routes location={location}>
           <Route path="/" element={<Dashboard />} />
           <Route path="/focus-timer" element={<FocusTimerDetailed />} />
           <Route path="/mood-tracker" element={<MoodTrackerDetailed />} />
@@ -64,20 +67,22 @@ export const DesktopHomepage = () => {
           <Route path="/about" element={<Dashboard />} />
         </Routes>
       </div>
-      <Routes>
-        <Route path="/" element={<AboutPage {...ABOUT_CONTENT.general} desktop />} />
-        <Route path="/focus-timer" element={<AboutPage {...ABOUT_CONTENT.focus} desktop />} />
-        <Route path="/habit-tracker" element={<AboutPage {...ABOUT_CONTENT.habits} desktop />} />
-        <Route path="/breathe-timer" element={<AboutPage {...ABOUT_CONTENT.breathe} desktop />} />
-        <Route path="/mood-tracker" element={<AboutPage {...ABOUT_CONTENT.mood} desktop />} />
-        <Route path="/about" element={<AboutPage {...ABOUT_CONTENT.general} desktop />} />
-        <Route path="/settings" element={<AboutPage {...ABOUT_CONTENT.general} desktop />} />
-        <Route path="/weekly-summary" element={<AboutPage {...ABOUT_CONTENT.general} desktop />} />
-        <Route path="/about-focus-timer" element={<AboutPage {...ABOUT_CONTENT.focus} desktop />} />
-        <Route path="/about-habit-tracker" element={<AboutPage {...ABOUT_CONTENT.habits} desktop />} />
-        <Route path="/about-breathe-timer" element={<AboutPage {...ABOUT_CONTENT.breathe} desktop />} />
-        <Route path="/about-mood-tracker" element={<AboutPage {...ABOUT_CONTENT.mood} desktop />} />
-      </Routes>
+      <div className="page-transition" key={`about-${location.key}`}>
+        <Routes location={location}>
+          <Route path="/" element={<AboutPage {...ABOUT_CONTENT.general} desktop />} />
+          <Route path="/focus-timer" element={<AboutPage {...ABOUT_CONTENT.focus} desktop />} />
+          <Route path="/habit-tracker" element={<AboutPage {...ABOUT_CONTENT.habits} desktop />} />
+          <Route path="/breathe-timer" element={<AboutPage {...ABOUT_CONTENT.breathe} desktop />} />
+          <Route path="/mood-tracker" element={<AboutPage {...ABOUT_CONTENT.mood} desktop />} />
+          <Route path="/about" element={<AboutPage {...ABOUT_CONTENT.general} desktop />} />
+          <Route path="/settings" element={<AboutPage {...ABOUT_CONTENT.general} desktop />} />
+          <Route path="/weekly-summary" element={<AboutPage {...ABOUT_CONTENT.general} desktop />} />
+          <Route path="/about-focus-timer" element={<AboutPage {...ABOUT_CONTENT.focus} desktop />} />
+          <Route path="/about-habit-tracker" element={<AboutPage {...ABOUT_CONTENT.habits} desktop />} />
+          <Route path="/about-breathe-timer" element={<AboutPage {...ABOUT_CONTENT.breathe} desktop />} />
+          <Route path="/about-mood-tracker" element={<AboutPage {...ABOUT_CONTENT.mood} desktop />} />
+        </Routes>
+      </div>
     </div>
   );
 };
