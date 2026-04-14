@@ -16,7 +16,7 @@ export const HabitTracker = () => {
   // if desktop render <HabitTrackerDetailed />
   // if mobile clicking will go to <MobileHabitTrackerPage />
   return (
-    <div className="tile-wrapper">
+    <div className="tile-wrapper tile-habit">
       <Link to="/habit-tracker">
         <div className="tile-main-name">. HABIT</div>
         <div className="habit-circles-wrapper">

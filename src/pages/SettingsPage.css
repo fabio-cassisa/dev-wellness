@@ -15,10 +15,24 @@
 }
 
 .settings-input-field {
-    width: 80%;
-    margin-left: 20%;
-    border-radius: 0.5vmin;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--secondary-accent-color);
+    background-color: transparent;
+    color: var(--primary-text-color);
+    font-family: 'Inter', Helvetica, sans-serif;
+    font-size: inherit;
+    padding: 0.4rem 0.2rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
 
+.settings-input-field:focus {
+    border-bottom-color: var(--primary-accent-color);
+}
+
+select.settings-input-field {
+    cursor: pointer;
 }
 
 .settings-buttons-wrapper {

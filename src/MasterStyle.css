@@ -26,6 +26,9 @@ body {
   height: 95vh;
   background-color: var(--secondary-bg-color);
   border-radius: 20px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--tertiary-bg-color) transparent;
 }
 
 .app-container {

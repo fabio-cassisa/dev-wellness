@@ -15,7 +15,30 @@
   background-color: var(--tertiary-bg-color);
   border-radius: 7.7%;
   position: relative;
-  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.tile-wrapper:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Feature color accents — subtle left border per tile */
+.tile-focus {
+  border-left: 3px solid #60a5fa;
+}
+
+.tile-habit {
+  border-left: 3px solid #fbbf24;
+}
+
+.tile-breathe {
+  border-left: 3px solid #34d399;
+}
+
+.tile-mood {
+  border-left: 3px solid #a78bfa;
 }
 
 /* Active tile glow — applied when a timer is running */

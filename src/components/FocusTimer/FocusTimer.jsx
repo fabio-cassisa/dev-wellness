@@ -18,7 +18,7 @@ export const FocusTimer = () => {
   );
 
   return (
-    <div className={clsx('tile-wrapper', isFocusTimerRunning && 'tile-active')}>
+    <div className={clsx('tile-wrapper tile-focus', isFocusTimerRunning && 'tile-active')}>
       <Link to="/focus-timer">
         <div className="tile-main-name">. FOCUS</div>
         <div className="focus-timer-done-counter">{focusTimerCount}</div>

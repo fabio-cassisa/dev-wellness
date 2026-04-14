@@ -78,17 +78,18 @@
   font-family: 'Inter', Helvetica, sans-serif;
   font-size: 3.5vmin;
   font-weight: 400;
-  overflow: hidden;
+  display: flex;
+  gap: 1rem;
+  width: 85%;
 }
 
-.breathe-history-yesterday {
-  padding: 20px;
-  float: left;
-}
-
+.breathe-history-yesterday,
 .breathe-history-overall {
-  padding: 20px;
-  float: left;
+  flex: 1;
+  background-color: var(--tertiary-bg-color);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
 }
 
 /* Media query for medium-sized screens (e.g., tablets) */

@@ -11,7 +11,7 @@ export const MoodTracker = () => {
     const totalLevel = ((moodLevel + energyLevel) - overwhelmedLevel);
 
     return(
-        <div className="tile-wrapper">
+        <div className="tile-wrapper tile-mood">
             <Link to="/mood-tracker">
             <div className="tile-main-name">. MOOD</div>
             {totalLevel > 4 && (
