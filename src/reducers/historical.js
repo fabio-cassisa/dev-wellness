@@ -11,15 +11,25 @@ export const historical = createSlice({
   initialState,
   reducers: {
     loadHistoricalData: state => {
-      const historicalData = { ...localStorage };
-      // delete settings data
-      delete historicalData.settings;
-      // delete data for the current date
-      delete historicalData[getCurrentDate()];
-      state.historicalData = { ...historicalData };
+      // Only load date-keyed entries (YYYY-MM-DD format) from localStorage
+      const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+      const currentDate = getCurrentDate();
+      const historicalData = {};
+
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (datePattern.test(key) && key !== currentDate) {
+          try {
+            historicalData[key] = JSON.parse(localStorage.getItem(key));
+          } catch {
+            // skip malformed entries
+          }
+        }
+      }
+
+      state.historicalData = historicalData;
     },
   },
 });
 
-export const { loadHistoricalData, setEnergyLevel, setOverwhelmedLevel } =
-  historical.actions;
+export const { loadHistoricalData } = historical.actions;

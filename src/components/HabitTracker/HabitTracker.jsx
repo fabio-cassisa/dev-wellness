@@ -1,7 +1,7 @@
 // This is the component shown in the Dashboard
 // Conditionally show either expanded or unexpanded depending the screen size
 import { HabitCircle } from '../../assets/SVGElements';
-import { useSelector } from 'react-redux/es/hooks/useSelector';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './HabitTracker.css';
 

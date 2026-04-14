@@ -1,5 +1,5 @@
 import { MoodDown, MoodStableLine, MoodUp } from "../../assets/SVGElements";
-import { useSelector } from "react-redux/es/hooks/useSelector";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./MoodTracker.css"
 // This is the component shown in the Dashboard

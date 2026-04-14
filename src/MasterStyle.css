@@ -99,7 +99,7 @@ body {
 
 .app-button:active {
   background-color: var(--tertiary-bg-color);
-  border-color: var(-primary-accent-color);
+  border-color: var(--primary-accent-color);
   color: var(--primary-text-color);
 }
 

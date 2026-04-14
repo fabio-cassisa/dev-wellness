@@ -23,7 +23,7 @@ export const breatheTimer = createSlice({
     resetBreatheTimer: state => {
       state.isBreatheTimerRunning = false;
       state.isBreatheTimerPaused = false;
-      state.focusTimer = 0;
+      state.breatheTimer = 0;
     },
 
     endBreatheTimer: state => {

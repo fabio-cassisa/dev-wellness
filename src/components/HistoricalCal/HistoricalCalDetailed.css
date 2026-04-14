@@ -2,6 +2,6 @@
 .historical-cal-wrapper {
     width: 30vw; 
     height: 95vh;
-    background-color:#1C1D1F;
+    background-color: var(--secondary-bg-color);
     border-radius: 20px;
   }
