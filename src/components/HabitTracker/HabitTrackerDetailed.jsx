@@ -60,7 +60,7 @@ export const HabitTrackerDetailed = () => {
           <div className="main-app-name">. HABIT</div>
         </header>
         <h2 className="secondary-header">Look what you can achieve today!</h2>
-        <h4 className="habit-detailed-counter">🏆: {habitsCompletedCount}/5</h4>
+        <h4 className="habit-detailed-counter">✓ {habitsCompletedCount}/5</h4>
         <div className="habit-detailed-wrapper-habits">
           {habits.map(habit => {
             return (
@@ -91,7 +91,7 @@ export const HabitTrackerDetailed = () => {
                 <div className="habit-history-yesterday">
                   Yesterday&apos;s data:
                   <p />
-                  🏆:{' '}
+                  ✓{' '}
                   {
                     dataYesterday.habits.habits.filter(habit => habit.isComplete)
                       .length
@@ -103,7 +103,7 @@ export const HabitTrackerDetailed = () => {
                 <div className="habit-history-overall">
                   Overall data:
                   <p />
-                  🏆:{' '}
+                  ✓{' '}
                   {Math.round(
                     historicalHabitData.done / historicalHabitData.count
                   )}{' '}

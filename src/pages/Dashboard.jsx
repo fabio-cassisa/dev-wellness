@@ -25,9 +25,9 @@ export const Dashboard = () => {
           Hi {settingsState.name}, ready for today&apos;s session?
         </h2>
         {streak > 0 && (
-          <div className="streak-badge">🔥 {streak}-day streak</div>
+          <div className="streak-badge">● {streak}-day streak</div>
         )}
-        <Link to="/weekly-summary" className="weekly-link-dashboard">📊 Weekly Summary</Link>
+        <Link to="/weekly-summary" className="weekly-link-dashboard">Weekly Summary →</Link>
         {isMobile && <DashLine />}
         <div className="app-wrapper">
           {!isMobile && <DashLine />}

@@ -129,7 +129,7 @@ export const MoodTrackerDetailed = () => {
         <div className="range-mood">
           <div className="range-mood-label">Mood Level: {mood.moodLevel}</div>
           <div className="range-slider-wrapper">
-            <span className="range-emoji">😐</span>
+            <span className="range-emoji">low</span>
             <input
               type="range"
               className="custom-range"
@@ -139,13 +139,13 @@ export const MoodTrackerDetailed = () => {
               onChange={e => handleUpdateMoodLevel(e.target.value)}
               value={mood.moodLevel}
             />
-            <span className="range-emoji">😊</span>
+            <span className="range-emoji">high</span>
           </div>
         </div>
         <div className="range-mood">
           <div className="range-mood-label">Energy Level: {mood.energyLevel}</div>
           <div className="range-slider-wrapper">
-            <span className="range-emoji">🔋</span>
+            <span className="range-emoji">low</span>
             <input
               type="range"
               className="custom-range"
@@ -155,13 +155,13 @@ export const MoodTrackerDetailed = () => {
               onChange={e => handleUpdateEnergyLevel(e.target.value)}
               value={mood.energyLevel}
             />
-            <span className="range-emoji">⚡</span>
+            <span className="range-emoji">high</span>
           </div>
         </div>
         <div className="range-mood">
           <div className="range-mood-label">Overwhelmed Level: {mood.overwhelmedLevel}</div>
           <div className="range-slider-wrapper">
-            <span className="range-emoji">😌</span>
+            <span className="range-emoji">low</span>
             <input
               type="range"
               className="custom-range"
@@ -171,7 +171,7 @@ export const MoodTrackerDetailed = () => {
               onChange={e => handleUpdateOverwhelmedLevel(e.target.value)}
               value={mood.overwhelmedLevel}
             />
-            <span className="range-emoji">😰</span>
+            <span className="range-emoji">high</span>
           </div>
         </div>
         {withHistoricalData ? (

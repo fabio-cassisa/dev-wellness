@@ -185,25 +185,27 @@ const MoodContext = () => {
   const avgMood = moodCount > 0 ? (moodSum / moodCount).toFixed(1) : null;
   const moodTrend = avgMood === null ? '—' : avgMood > 4 ? '↑ positive' : avgMood == 4 ? '→ stable' : '↓ dip';
 
-  const moodEmoji = ['', '😫', '😟', '😐', '🙂', '😊', '😄', '🤩', '🥳', '🌟', '✨'];
-
   return (
     <>
       <h2 className="ctx-title">Mood</h2>
       <div className="ctx-stat-grid">
         <div className="ctx-stat-card">
-          <span className="ctx-stat-value">{moodEmoji[currentMood.moodLevel] || currentMood.moodLevel}</span>
+          <span className="ctx-stat-icon">☺</span>
+          <span className="ctx-stat-value">{currentMood.moodLevel}/5</span>
           <span className="ctx-stat-label">Mood now</span>
         </div>
         <div className="ctx-stat-card">
-          <span className="ctx-stat-value">{currentMood.energyLevel}/10</span>
+          <span className="ctx-stat-icon">↑</span>
+          <span className="ctx-stat-value">{currentMood.energyLevel}/5</span>
           <span className="ctx-stat-label">Energy</span>
         </div>
         <div className="ctx-stat-card">
-          <span className="ctx-stat-value">{currentMood.overwhelmedLevel}/10</span>
+          <span className="ctx-stat-icon">~</span>
+          <span className="ctx-stat-value">{currentMood.overwhelmedLevel}/5</span>
           <span className="ctx-stat-label">Stress</span>
         </div>
         <div className="ctx-stat-card">
+          <span className="ctx-stat-icon">→</span>
           <span className="ctx-stat-value">{moodTrend}</span>
           <span className="ctx-stat-label">7-day trend</span>
         </div>
