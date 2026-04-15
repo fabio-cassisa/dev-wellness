@@ -22,9 +22,7 @@
   width: clamp(160px, 55%, 300px);
   aspect-ratio: 1;
   text-align: center;
-  border-radius: 100%;
-  box-shadow: -20px -20px 60px var(--secondary-accent-color),
-    20px 20px 60px var(--secondary-accent-color);
+  filter: drop-shadow(0 0 40px var(--secondary-accent-color));
   cursor: pointer;
 }
 
