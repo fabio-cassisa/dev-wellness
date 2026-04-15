@@ -97,7 +97,7 @@ export const BreatheTimerDetailed = () => {
             styles={buildStyles({
               pathTransitionDuration: 0.5,
               rotation: 1 / 2 + 1 / 8,
-              strokeLinecap: 'butt',
+              strokeLinecap: 'round',
               trailColor: 'var(--secondary-accent-color)',
               pathColor: 'var(--primary-accent-color)',
             })}
