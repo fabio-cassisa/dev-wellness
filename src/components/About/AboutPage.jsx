@@ -1,20 +1,9 @@
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useScreenSize from '../../hooks/useScreenSize';
 import './About.css';
 
-// Single about page component — renders different content based on props
-export const AboutPage = ({ title, content, desktopRedirect, desktop }) => {
+// About page — mobile-only informational pages
+export const AboutPage = ({ title, content }) => {
   const navigate = useNavigate();
-  const { isMobile } = useScreenSize();
-
-  // On desktop, about pages redirect to their parent route
-  // (about content is shown in the third column instead)
-  useEffect(() => {
-    if (!isMobile && !desktop && desktopRedirect) {
-      navigate(desktopRedirect);
-    }
-  }, [isMobile]);
 
   return (
     <div className="about-wrapper">
@@ -23,15 +12,13 @@ export const AboutPage = ({ title, content, desktopRedirect, desktop }) => {
           <div className="about-header">{title}</div>
         </div>
         <div className="about-paragraph">{content}</div>
-        {!desktop && (
-          <button
-            className="app-button"
-            onClick={() => navigate(-1)}
-            style={{ marginTop: '1.5rem' }}
-          >
-            ← Back
-          </button>
-        )}
+        <button
+          className="app-button"
+          onClick={() => navigate(-1)}
+          style={{ marginTop: '1.5rem' }}
+        >
+          ← Back
+        </button>
       </div>
     </div>
   );

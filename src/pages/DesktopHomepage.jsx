@@ -5,6 +5,7 @@ import { useFocusTimerTick } from '../hooks/useFocusTimerTick';
 import { useBreatheTimerTick } from '../hooks/useBreatheTimerTick';
 import { VerticalMenu } from '../components/VerticalMenu';
 import { MobileBottomNav } from '../components/MobileBottomNav';
+import { ContextPanel } from '../components/ContextPanel/ContextPanel';
 import { Dashboard } from './Dashboard';
 import { FocusTimerDetailed } from '../components/FocusTimer/FocusTimerDetailed';
 import { MoodTrackerDetailed } from '../components/MoodTracker/MoodTrackerDetailed';
@@ -60,29 +61,9 @@ export const DesktopHomepage = () => {
           <Route path="/breathe-timer" element={<BreatheTimerDetailed />} />
           <Route path="/weekly-summary" element={<WeeklySummary />} />
           <Route path="/settings" element={<SettingsPage />} />
-          <Route path="/about-focus-timer" element={<FocusTimerDetailed />} />
-          <Route path="/about-habit-tracker" element={<HabitTrackerDetailed />} />
-          <Route path="/about-breathe-timer" element={<BreatheTimerDetailed />} />
-          <Route path="/about-mood-tracker" element={<MoodTrackerDetailed />} />
-          <Route path="/about" element={<Dashboard />} />
         </Routes>
       </div>
-      <div className="page-transition" key={`about-${location.key}`}>
-        <Routes location={location}>
-          <Route path="/" element={<AboutPage {...ABOUT_CONTENT.general} desktop />} />
-          <Route path="/focus-timer" element={<AboutPage {...ABOUT_CONTENT.focus} desktop />} />
-          <Route path="/habit-tracker" element={<AboutPage {...ABOUT_CONTENT.habits} desktop />} />
-          <Route path="/breathe-timer" element={<AboutPage {...ABOUT_CONTENT.breathe} desktop />} />
-          <Route path="/mood-tracker" element={<AboutPage {...ABOUT_CONTENT.mood} desktop />} />
-          <Route path="/about" element={<AboutPage {...ABOUT_CONTENT.general} desktop />} />
-          <Route path="/settings" element={<AboutPage {...ABOUT_CONTENT.general} desktop />} />
-          <Route path="/weekly-summary" element={<AboutPage {...ABOUT_CONTENT.general} desktop />} />
-          <Route path="/about-focus-timer" element={<AboutPage {...ABOUT_CONTENT.focus} desktop />} />
-          <Route path="/about-habit-tracker" element={<AboutPage {...ABOUT_CONTENT.habits} desktop />} />
-          <Route path="/about-breathe-timer" element={<AboutPage {...ABOUT_CONTENT.breathe} desktop />} />
-          <Route path="/about-mood-tracker" element={<AboutPage {...ABOUT_CONTENT.mood} desktop />} />
-        </Routes>
-      </div>
+      <ContextPanel />
     </div>
   );
 };
