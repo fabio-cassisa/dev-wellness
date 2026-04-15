@@ -19,7 +19,7 @@ export const Dashboard = () => {
 
   return (
     <div className="main-wrapper">
-      <div className="app-container">
+      <div className={`app-container ${!isMobile ? 'app-container--desktop' : ''}`}>
         <h1 className="main-app-name">DevWellnessHub</h1>
         <h2 className="secondary-header">
           Hi {settingsState.name}, ready for today&apos;s session?
@@ -30,7 +30,6 @@ export const Dashboard = () => {
         <Link to="/weekly-summary" className="weekly-link-dashboard">Weekly Summary →</Link>
         {isMobile && <DashLine />}
         <div className="app-wrapper">
-          {!isMobile && <DashLine />}
           <FocusTimer />
           <HabitTracker />
           <BreatheTimer />

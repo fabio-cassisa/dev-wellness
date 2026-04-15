@@ -2,7 +2,7 @@
 
 .context-panel {
   flex: 0 0 auto;
-  width: clamp(200px, 24vw, 340px);
+  width: clamp(180px, 20vw, 280px);
   background-color: var(--secondary-bg-color);
   border-radius: 20px;
   overflow-y: auto;

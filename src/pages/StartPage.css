@@ -6,6 +6,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  /* Center the box on screen */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /* Mobile: full viewport */
@@ -14,5 +19,7 @@
     width: 100vw;
     height: 100vh;
     border-radius: 0px;
+    position: static;
+    transform: none;
   }
 }

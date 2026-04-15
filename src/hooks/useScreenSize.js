@@ -2,21 +2,16 @@
 import { useEffect, useState } from 'react';
 
 const useScreenSize = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
+  const [screenSize, setScreenSize] = useState(() => classify(window.innerWidth));
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 767);
-    };
+    const handleResize = () => setScreenSize(classify(window.innerWidth));
 
     const handleOrientationChange = () => {
       // Wait briefly after orientation change for viewport to settle
-      setTimeout(() => {
-        setIsMobile(window.innerWidth <= 767);
-      }, 200);
+      setTimeout(() => setScreenSize(classify(window.innerWidth)), 200);
     };
 
-    // Initial setup
     handleResize();
 
     window.addEventListener('resize', handleResize);
@@ -28,7 +23,15 @@ const useScreenSize = () => {
     };
   }, []);
 
-  return { isMobile };
+  return screenSize;
 };
+
+function classify(width) {
+  return {
+    isMobile: width <= 767,
+    isTablet: width >= 768 && width <= 1024,
+    isDesktop: width > 1024,
+  };
+}
 
 export default useScreenSize;

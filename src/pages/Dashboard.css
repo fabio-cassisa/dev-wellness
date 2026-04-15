@@ -105,3 +105,31 @@
     width: 80%;
   }
 }
+
+/* Desktop dashboard — fill the column exactly, zero scroll */
+.app-container--desktop {
+  height: 100%;
+  padding: 0.75rem 0;
+  box-sizing: border-box;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  gap: 0.4rem;
+}
+
+.app-container--desktop .main-app-name {
+  padding-top: 0;
+}
+
+.app-container--desktop .app-wrapper {
+  flex: 1;
+  min-height: 0;
+  grid-template-rows: 1fr 1fr;
+  justify-items: center;
+}
+
+.app-container--desktop .tile-wrapper {
+  height: 100%;
+  width: auto;
+  max-height: 240px;
+  max-width: 240px;
+}

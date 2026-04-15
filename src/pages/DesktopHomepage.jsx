@@ -18,7 +18,7 @@ import { ABOUT_CONTENT } from '../components/About/aboutContent';
 import './DesktopHomepage.css';
 
 export const DesktopHomepage = () => {
-  const { isMobile } = useScreenSize();
+  const { isMobile, isTablet } = useScreenSize();
   const location = useLocation();
 
   // Timer tick logic — runs in background regardless of which page is visible
@@ -46,6 +46,27 @@ export const DesktopHomepage = () => {
         </div>
         <MobileBottomNav />
       </>
+    );
+  }
+
+  if (isTablet) {
+    return (
+      <div className="tablet-wrapper">
+        <div className="page-transition" key={location.key}>
+          <Routes location={location}>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/focus-timer" element={<FocusTimerDetailed />} />
+            <Route path="/mood-tracker" element={<MoodTrackerDetailed />} />
+            <Route path="/habit-tracker" element={<HabitTrackerDetailed />} />
+            <Route path="/breathe-timer" element={<BreatheTimerDetailed />} />
+            <Route path="/weekly-summary" element={<WeeklySummary />} />
+            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/about" element={<AboutPage {...ABOUT_CONTENT.general} />} />
+          </Routes>
+        </div>
+        <ContextPanel />
+        <MobileBottomNav />
+      </div>
     );
   }
 

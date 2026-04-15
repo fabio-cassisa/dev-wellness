@@ -11,9 +11,9 @@ const NAV_ITEMS = [
 ];
 
 export const MobileBottomNav = () => {
-  const { isMobile } = useScreenSize();
+  const { isDesktop } = useScreenSize();
 
-  if (!isMobile) return null;
+  if (isDesktop) return null;
 
   return (
     <nav className="mobile-bottom-nav" aria-label="Main navigation">
