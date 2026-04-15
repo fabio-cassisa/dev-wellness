@@ -61,6 +61,7 @@ export const DesktopHomepage = () => {
           <Route path="/breathe-timer" element={<BreatheTimerDetailed />} />
           <Route path="/weekly-summary" element={<WeeklySummary />} />
           <Route path="/settings" element={<SettingsPage />} />
+          <Route path="/about" element={<AboutPage {...ABOUT_CONTENT.general} />} />
         </Routes>
       </div>
       <ContextPanel />

@@ -27,8 +27,8 @@ body {
 }
 
 .main-wrapper {
-  width: 45vw;
-  height: 95vh;
+  flex: 1 1 0;
+  min-width: 0;
   background-color: var(--secondary-bg-color);
   border-radius: 20px;
   overflow-y: auto;

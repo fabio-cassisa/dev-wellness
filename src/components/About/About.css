@@ -1,6 +1,6 @@
 .about-wrapper {
-  width: 30vw;
-  height: 95vh;
+  flex: 1 1 0;
+  min-width: 0;
   background-color: var(--secondary-bg-color);
   border-radius: 20px;
   overflow-y: auto;
@@ -21,7 +21,7 @@
 .about-paragraph {
   color: var(--primary-text-color);
   font-family: 'Inter', Helvetica, sans-serif;
-  padding-top: 10%;
+  padding-top: 5%;
   width: 90%;
   text-align: left;
   font-size: var(--text-body);
@@ -30,12 +30,13 @@
   line-height: 1.6;
 }
 
-/* Media query for smaller screens (e.g., mobile devices) */
+/* Mobile */
 @media only screen and (max-width: 767px) {
   .about-wrapper {
     width: 100vw;
-    height: 100vh;
-    border-radius: 0px;
+    min-height: 100vh;
+    height: auto;
+    border-radius: 0;
   }
 
   .about-paragraph {

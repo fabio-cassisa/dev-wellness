@@ -22,18 +22,22 @@ const DashboardContext = () => {
       <h2 className="ctx-title">Today</h2>
       <div className="ctx-stat-grid">
         <div className="ctx-stat-card">
+          <span className="ctx-stat-icon">⏱</span>
           <span className="ctx-stat-value">{focusTimer.focusTimerCount}</span>
           <span className="ctx-stat-label">Focus sessions</span>
         </div>
         <div className="ctx-stat-card">
+          <span className="ctx-stat-icon">◎</span>
           <span className="ctx-stat-value">{breatheTimer.breatheTimerCount}</span>
           <span className="ctx-stat-label">Breathe sessions</span>
         </div>
         <div className="ctx-stat-card">
+          <span className="ctx-stat-icon">✓</span>
           <span className="ctx-stat-value">{habitsCompleted}/{habits.length}</span>
           <span className="ctx-stat-label">Habits done</span>
         </div>
         <div className="ctx-stat-card">
+          <span className="ctx-stat-icon">☺</span>
           <span className="ctx-stat-value">{streak > 0 ? `${streak}d` : '—'}</span>
           <span className="ctx-stat-label">Streak</span>
         </div>
@@ -277,6 +281,7 @@ const ROUTE_PANELS = {
   '/habit-tracker': () => <HabitContext />,
   '/weekly-summary': () => <MinimalContext title="Weekly" message="Your week at a glance — all the data is in the main view." />,
   '/settings': () => <MinimalContext title="Settings" message="Customize your timers, theme, and habits." />,
+  '/about': () => <MinimalContext title="About" message="Learn what DevWellnessHub can do for your daily routine." />,
 };
 
 export const ContextPanel = () => {

@@ -15,6 +15,7 @@ export const VerticalMenu = () => {
         </div>
         <NavLink className="menu-link" to="/weekly-summary">WEEKLY</NavLink>
         <NavLink className="menu-link" to="/settings">SETTINGS</NavLink>
+        <NavLink className="menu-link" to="/about">ABOUT</NavLink>
       </div>
     </div>
   );

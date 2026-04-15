@@ -1,19 +1,22 @@
 /* --- Context Panel — desktop right sidebar --- */
 
 .context-panel {
-  width: 26vw;
-  height: 95vh;
+  flex: 0 0 auto;
+  width: clamp(200px, 24vw, 340px);
   background-color: var(--secondary-bg-color);
   border-radius: 20px;
   overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--tertiary-bg-color) transparent;
+  scrollbar-width: none;
   padding: 2rem 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
   color: var(--primary-text-color);
   font-family: 'Inter', Helvetica, sans-serif;
+}
+
+.context-panel::-webkit-scrollbar {
+  display: none;
 }
 
 /* --- Title --- */
@@ -42,6 +45,12 @@
   flex-direction: column;
   gap: 0.2rem;
   text-align: center;
+}
+
+.ctx-stat-icon {
+  font-size: var(--text-body);
+  opacity: 0.6;
+  line-height: 1;
 }
 
 .ctx-stat-value {
@@ -163,7 +172,7 @@
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
   .context-panel {
-    width: 22vw;
+    width: clamp(160px, 22vw, 280px);
     padding: 1.25rem 1rem;
   }
 }

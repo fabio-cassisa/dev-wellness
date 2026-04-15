@@ -4,8 +4,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 20vw;
-  height: 95vh;
+  flex: 0 0 auto;
+  width: clamp(150px, 18vw, 240px);
   background-color: var(--secondary-bg-color);
   border-radius: 20px;
 }
@@ -47,9 +47,7 @@
 /* Media query for medium-sized screens (e.g., tablets) */
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
   .vertical-menu-bar {
-    width: 20vw;
-    height: 95vh;
-    border-radius: 20px;
+    width: clamp(120px, 16vw, 180px);
   }
 
   .menu-items {
