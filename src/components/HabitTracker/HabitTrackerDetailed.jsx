@@ -60,7 +60,7 @@ export const HabitTrackerDetailed = () => {
           <div className="main-app-name">. HABIT</div>
         </header>
         <h2 className="secondary-header">Look what you can achieve today!</h2>
-        <h4 className="habit-detailed-counter">✓ {habitsCompletedCount}/5</h4>
+        <h4 className="habit-detailed-counter">✓ {habitsCompletedCount}/{habits.length}</h4>
         <div className="habit-detailed-wrapper-habits">
           {habits.map(habit => {
             return (

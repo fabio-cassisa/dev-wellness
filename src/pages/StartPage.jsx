@@ -13,14 +13,13 @@ export const StartPage = ({ onSetupComplete }) => {
   //used then for the app itself
 
   useEffect(() => {
-    //Check localStorage for existing data
-    //I think this could be refactored better?
-    const storedSettings = JSON.parse(localStorage.getItem('settings'));
-    const storedName = storedSettings ? storedSettings.name : null;
-
-    if (storedName) {
-      // If data is found, skip the StartPage
-      onSetupComplete();
+    try {
+      const storedSettings = JSON.parse(localStorage.getItem('settings'));
+      if (storedSettings?.name) {
+        onSetupComplete();
+      }
+    } catch {
+      // Corrupted localStorage — show onboarding again
     }
   }, []);
 

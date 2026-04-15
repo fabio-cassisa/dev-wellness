@@ -11,8 +11,9 @@ export const getYesterdayDate = () => {
 };
 
 export const millisToMinutesAndSeconds = millis => {
-  var minutes = Math.floor(millis / 60000);
-  var seconds = ((millis % 60000) / 1000).toFixed(0);
+  const totalSeconds = Math.floor(millis / 1000);
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
   return minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
 };
 
@@ -108,7 +109,15 @@ export const applyColorPalette = selectedPalette => {
   const root = document.documentElement;
   const selectedPaletteVariables = colorPalettes[selectedPalette];
 
-  // Apply the selected color palette variables to the root element
+  if (!selectedPaletteVariables) {
+    // Invalid palette — fall back to dark
+    const fallback = colorPalettes.dark;
+    for (const [property, value] of Object.entries(fallback)) {
+      root.style.setProperty(property, value);
+    }
+    return;
+  }
+
   for (const [property, value] of Object.entries(selectedPaletteVariables)) {
     root.style.setProperty(property, value);
   }

@@ -61,14 +61,19 @@ const crossSliceReducer = (state, action) => {
         currentData.habits = parsedData.habits;
       }
 
-      const historicalData = { ...localStorage };
-      // delete settings data
-      delete historicalData.settings;
-      // delete data for the current date
-      delete historicalData[getCurrentDate()];
-      Object.entries(historicalData).map(entry => {
-        historicalData[entry[0]] = JSON.parse(entry[1]);
-      });
+      const historicalData = {};
+      // Only parse localStorage keys that match YYYY-MM-DD date pattern
+      const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key === 'settings' || key === getCurrentDate()) continue;
+        if (!datePattern.test(key)) continue;
+        try {
+          historicalData[key] = JSON.parse(localStorage.getItem(key));
+        } catch {
+          // Skip corrupted entries
+        }
+      }
 
       return {
         ...state,

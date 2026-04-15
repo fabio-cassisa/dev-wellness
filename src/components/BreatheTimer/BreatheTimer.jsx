@@ -22,7 +22,7 @@ export const BreatheTimer = () => {
   return (
     <div className={clsx('tile-wrapper tile-breathe', isBreatheTimerRunning && 'tile-active')}>
       <Link to="/breathe-timer">
-        <div className="tile-main-name">. BREATH</div>
+        <div className="tile-main-name">. BREATHE</div>
         <div className="breath-timer-done-counter">{breatheTimerCount}</div>
         <div className="breath-circle">
           <BreathCircle />

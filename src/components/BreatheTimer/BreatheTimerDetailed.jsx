@@ -8,9 +8,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   handleResetBreatheTimer,
   handleStartBreatheTimer,
+  handlePauseBreatheTimer,
 } from './BreatheTimerDispatch';
 import { getYesterdayDate, getRecentDays, millisToMinutesAndSeconds } from '../../helpers';
-import useScreenSize from '../../hooks/useScreenSize';
 import { DashLine, ResetIcon } from '../../assets/SVGElements';
 import { EmptyState } from '../EmptyState';
 import { WeekDots } from '../WeekDots';
@@ -19,7 +19,6 @@ import './BreatheTimerDetailed.css';
 export const BreatheTimerDetailed = () => {
   const dispatch = useDispatch();
   const yesterdayDate = getYesterdayDate();
-  const { isMobile } = useScreenSize();
 
   const breatheTimer = useSelector(state => state.breatheTimer);
   const breatheTimerLengthMS = useSelector(
@@ -29,7 +28,7 @@ export const BreatheTimerDetailed = () => {
   const historical = useSelector(state => state.historical.historicalData);
   const dataYesterday = historical[yesterdayDate];
 
-  const historicalHabitData = Object.entries(historical).reduce(
+  const historicalBreatheData = Object.entries(historical).reduce(
     (acc, curr) => {
       acc.count += 1;
       acc.done += curr[1].breatheTimer.breatheTimerCount;
@@ -46,12 +45,24 @@ export const BreatheTimerDetailed = () => {
   const handleClickTimer = () => {
     if (!breatheTimer.isBreatheTimerRunning) {
       handleStartBreatheTimer(dispatch, breatheTimer, breatheTimerLengthMS);
+    } else {
+      handlePauseBreatheTimer(dispatch);
     }
   };
 
   const renderBreatheTimerText = () => {
     if (!breatheTimer.isBreatheTimerRunning) {
       return 'S T A R T';
+    } else if (
+      breatheTimer.isBreatheTimerRunning &&
+      !breatheTimer.isBreatheTimerPaused
+    ) {
+      return 'P A U S E';
+    } else if (
+      breatheTimer.isBreatheTimerRunning &&
+      breatheTimer.isBreatheTimerPaused
+    ) {
+      return 'R E S U M E';
     }
   };
 
@@ -63,7 +74,7 @@ export const BreatheTimerDetailed = () => {
   });
 
   const withHistoricalData =
-    dataYesterday != null && historicalHabitData.count != 0;
+    dataYesterday != null && historicalBreatheData.count != 0;
 
   const recentDays = getRecentDays(historical);
   const weekDots = recentDays.map(day => ({
@@ -124,12 +135,12 @@ export const BreatheTimerDetailed = () => {
                   Count: {dataYesterday.breatheTimer.breatheTimerCount}
                 </div>
               )}
-              {historicalHabitData.count != 0 && (
+              {historicalBreatheData.count != 0 && (
                 <div className="breathe-history-overall">
                   Overall data:
                   <p />
                   Average per day:{' '}
-                  {Math.round(historicalHabitData.done / historicalHabitData.count)}
+                  {Math.round(historicalBreatheData.done / historicalBreatheData.count)}
                 </div>
               )}
             </div>
