@@ -12,7 +12,6 @@
   flex-direction: column;
   gap: 1.25rem;
   color: var(--primary-text-color);
-  font-family: 'Inter', Helvetica, sans-serif;
 }
 
 .context-panel::-webkit-scrollbar {

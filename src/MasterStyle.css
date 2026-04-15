@@ -68,7 +68,6 @@ body {
 .main-app-name {
   padding-top: 5%;
   color: var(--primary-text-color);
-  font-family: 'Inter', Helvetica, sans-serif;
   font-size: var(--text-hero);
   text-align: center;
   font-weight: 700;
@@ -78,7 +77,6 @@ body {
 
 .secondary-header {
   color: var(--primary-text-color);
-  font-family: 'Inter', Helvetica, sans-serif;
   font-size: var(--text-heading);
   text-align: center;
   font-weight: 500;
@@ -88,7 +86,6 @@ body {
 
 .text-paragraph {
   color: var(--primary-text-color);
-  font-family: 'Inter', Helvetica, sans-serif;
   font-size: var(--text-body);
   text-align: justify;
   font-weight: 400;
@@ -99,7 +96,6 @@ body {
 .app-button {
   display: inline-block;
   padding: 0.5rem 1.25rem;
-  font-family: 'Inter', Helvetica, sans-serif;
   font-size: var(--text-caption);
   font-weight: 600;
   letter-spacing: 0.03em;

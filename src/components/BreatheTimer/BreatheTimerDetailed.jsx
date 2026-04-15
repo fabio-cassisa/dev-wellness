@@ -60,6 +60,13 @@ export const BreatheTimerDetailed = () => {
     return null;
   };
 
+  const handleKeyDown = (e, handler) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handler();
+    }
+  };
+
   const breatheTimerClassnames = clsx({
     'focus-detailed-circular-progress-bar': true,
     'breathe-ring': true,
@@ -89,12 +96,20 @@ export const BreatheTimerDetailed = () => {
           onClick={() =>
             handleResetBreatheTimer(dispatch, breatheTimerLengthMS)
           }
+          onKeyDown={(e) => handleKeyDown(e, () => handleResetBreatheTimer(dispatch, breatheTimerLengthMS))}
+          role="button"
+          tabIndex={0}
+          aria-label="Reset breathe timer"
         >
           <ResetIcon />
         </div>
         <div
           className={breatheTimerClassnames}
           onClick={() => handleClickTimer()}
+          onKeyDown={(e) => handleKeyDown(e, handleClickTimer)}
+          role="button"
+          tabIndex={0}
+          aria-label={breatheTimer.isBreatheTimerRunning ? 'Pause breathe timer' : 'Start breathe timer'}
         >
           <CircularProgressbarWithChildren
             value={percentage}

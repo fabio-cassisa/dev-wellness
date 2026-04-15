@@ -28,11 +28,10 @@
 .pulsing::after {
   content: 'breathe in';
   position: absolute;
-  top: 55%;
+  top: 60%;
   left: 0;
   width: 100%;
   color: var(--primary-text-color);
-  font-family: 'Inter', Helvetica, sans-serif;
   font-size: clamp(0.6rem, 3vmin, 0.85rem);
   text-align: center;
   animation: text 10s linear infinite;
@@ -75,7 +74,6 @@
 
 .breathe-history {
   color: var(--primary-text-color);
-  font-family: 'Inter', Helvetica, sans-serif;
   font-size: var(--text-caption);
   font-weight: 400;
   display: flex;

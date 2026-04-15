@@ -9,7 +9,6 @@
 
 .week-dots-label {
   color: var(--primary-text-color);
-  font-family: 'Inter', Helvetica, sans-serif;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.5px;
@@ -43,7 +42,6 @@
 
 .week-dot-day {
   color: var(--primary-text-color);
-  font-family: 'Inter', Helvetica, sans-serif;
   font-size: 0.6rem;
   font-weight: 400;
   opacity: 0.5;

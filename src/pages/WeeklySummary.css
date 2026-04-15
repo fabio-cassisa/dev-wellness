@@ -32,7 +32,6 @@
 
 .weekly-stat-value {
   color: var(--primary-text-color);
-  font-family: 'Inter', Helvetica, sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 0.3px;
@@ -40,7 +39,6 @@
 
 .weekly-stat-label {
   color: var(--secondary-accent-color);
-  font-family: 'Inter', Helvetica, sans-serif;
   font-size: 0.75rem;
   font-weight: 400;
   text-transform: uppercase;
@@ -49,7 +47,6 @@
 
 .weekly-days-active {
   color: var(--primary-text-color);
-  font-family: 'Inter', Helvetica, sans-serif;
   font-size: 0.9rem;
   font-weight: 600;
   background-color: var(--tertiary-bg-color);
@@ -67,7 +64,6 @@
 
 .weekly-empty {
   color: var(--secondary-accent-color);
-  font-family: 'Inter', Helvetica, sans-serif;
   font-size: 0.9rem;
   text-align: center;
   padding: 2rem 1rem;

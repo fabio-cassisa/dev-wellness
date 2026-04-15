@@ -55,7 +55,6 @@
   padding: 0.5rem 0.75rem;
   outline: none;
   color: var(--primary-text-color);
-  font-family: 'Inter', Helvetica, sans-serif;
   font-size: var(--text-heading);
   transition: border-color 0.2s ease;
 }

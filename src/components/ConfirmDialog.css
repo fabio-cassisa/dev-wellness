@@ -23,7 +23,6 @@
 
 .confirm-title {
   color: var(--primary-text-color);
-  font-family: 'Inter', Helvetica, sans-serif;
   font-size: 1.25rem;
   font-weight: 600;
   margin: 0 0 0.75rem;
@@ -31,7 +30,6 @@
 
 .confirm-message {
   color: var(--primary-text-color);
-  font-family: 'Inter', Helvetica, sans-serif;
   font-size: 0.9rem;
   font-weight: 400;
   opacity: 0.8;

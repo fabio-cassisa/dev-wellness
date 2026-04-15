@@ -20,7 +20,6 @@
     border-bottom: 1px solid var(--secondary-accent-color);
     background-color: transparent;
     color: var(--primary-text-color);
-    font-family: 'Inter', Helvetica, sans-serif;
     font-size: inherit;
     padding: 0.4rem 0.2rem;
     outline: none;

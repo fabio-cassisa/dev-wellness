@@ -64,6 +64,13 @@ export const FocusTimerDetailed = () => {
     }
   };
 
+  const handleKeyDown = (e, handler) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handler();
+    }
+  };
+
   const withHistoricalData =
     dataYesterday != null && historicalFocusData.count != 0;
 
@@ -85,12 +92,20 @@ export const FocusTimerDetailed = () => {
         <div
           className="focus-detailed-reset-icon"
           onClick={() => handleResetFocusTimer(dispatch, focusTimerLengthMS)}
+          onKeyDown={(e) => handleKeyDown(e, () => handleResetFocusTimer(dispatch, focusTimerLengthMS))}
+          role="button"
+          tabIndex={0}
+          aria-label="Reset focus timer"
         >
           <ResetIcon />
         </div>
         <div
           className="focus-detailed-circular-progress-bar"
           onClick={() => handleClickTimer()}
+          onKeyDown={(e) => handleKeyDown(e, handleClickTimer)}
+          role="button"
+          tabIndex={0}
+          aria-label={focusTimer.isFocusTimerRunning ? 'Pause focus timer' : 'Start focus timer'}
         >
           <CircularProgressbarWithChildren
             value={percentage}

@@ -14,7 +14,6 @@
 
 .empty-state-text {
   color: var(--primary-text-color);
-  font-family: 'Inter', Helvetica, sans-serif;
   font-size: 0.85rem;
   font-weight: 400;
   text-align: center;
