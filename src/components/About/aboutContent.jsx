@@ -2,7 +2,6 @@
 export const ABOUT_CONTENT = {
   general: {
     title: '. ABOUT',
-    desktopRedirect: '/',
     content: (
       <>
         In the fast-paced realm of coding and innovation, we understand the
@@ -33,7 +32,6 @@ export const ABOUT_CONTENT = {
 
   focus: {
     title: '. FOCUS',
-    desktopRedirect: '/focus-timer',
     content: (
       <>
         A Focus Timer, or Pomodoro timer, divides your work into manageable
@@ -64,7 +62,6 @@ export const ABOUT_CONTENT = {
 
   habits: {
     title: '. HABIT',
-    desktopRedirect: '/habit-tracker',
     content: (
       <>
         Habits are the product of repetition and intentional actions. When we
@@ -93,7 +90,6 @@ export const ABOUT_CONTENT = {
 
   breathe: {
     title: '. BREATHE',
-    desktopRedirect: '/breathe-timer',
     content: (
       <>
         Mindful breathing is a simple yet transformative practice that taps into
@@ -122,7 +118,6 @@ export const ABOUT_CONTENT = {
 
   mood: {
     title: '. MOOD',
-    desktopRedirect: '/mood-tracker',
     content: (
       <>
         Emotions are intricate signals that reflect our mental state. Tracking

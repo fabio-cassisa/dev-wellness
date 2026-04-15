@@ -10,6 +10,11 @@
   --primary-accent-color: #f0f2f1;
   --secondary-accent-color: #6f6f6f;
 
+  /* Semantic colors */
+  --danger-color: #c0392b;
+  --danger-hover: #e74c3c;
+  --danger-active: #a93226;
+
   /* Type scale — clamp(min, preferred, max) for smooth responsive sizing */
   --text-hero: clamp(1.75rem, 3vw, 2.5rem);
   --text-heading: clamp(1.1rem, 2vw, 1.5rem);
@@ -145,4 +150,10 @@ body {
     border-radius: 0px;
     padding-bottom: 80px; /* space for fixed mobile bottom nav */
   }
+}
+
+/* History card value — replaces <p /> spacers */
+.history-card-value {
+  display: block;
+  margin-top: 0.5rem;
 }

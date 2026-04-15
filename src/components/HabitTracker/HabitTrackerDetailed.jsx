@@ -90,24 +90,26 @@ export const HabitTrackerDetailed = () => {
               {dataYesterday != null && (
                 <div className="habit-history-yesterday">
                   Yesterday&apos;s data:
-                  <p />
+                  <span className="history-card-value">
                   ✓{' '}
                   {
                     dataYesterday.habits.habits.filter(habit => habit.isComplete)
                       .length
                   }{' '}
                   / {dataYesterday.habits.habits.length}
+                  </span>
                 </div>
               )}
               {historicalHabitData.count != 0 && (
                 <div className="habit-history-overall">
                   Overall data:
-                  <p />
+                  <span className="history-card-value">
                   ✓{' '}
                   {Math.round(
                     historicalHabitData.done / historicalHabitData.count
                   )}{' '}
                   / {historicalHabitData.habitCount / historicalHabitData.count}
+                  </span>
                 </div>
               )}
             </div>

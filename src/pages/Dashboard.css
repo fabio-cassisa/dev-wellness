@@ -15,6 +15,15 @@
   cursor: pointer;
 }
 
+/* Link fills entire tile — full click target */
+.tile-wrapper > a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
 .tile-wrapper:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);

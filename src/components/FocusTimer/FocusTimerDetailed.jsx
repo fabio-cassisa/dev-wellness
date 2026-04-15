@@ -119,16 +119,18 @@ export const FocusTimerDetailed = () => {
               {dataYesterday != null && (
                 <div className="focus-history-yesterday">
                   Yesterday&apos;s data:
-                  <p />
+                  <span className="history-card-value">
                   Count: {dataYesterday.focusTimer.focusTimerCount}
+                  </span>
                 </div>
               )}
               {historicalFocusData.count != 0 && (
                 <div className="focus-history-overall">
                   Overall data:
-                  <p />
+                  <span className="history-card-value">
                   Average per day:{' '}
                   {Math.round(historicalFocusData.done / historicalFocusData.count)}
+                  </span>
                 </div>
               )}
             </div>

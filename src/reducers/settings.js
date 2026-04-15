@@ -88,7 +88,6 @@ export const settings = createSlice({
 });
 
 export const {
-  loadAppSettings,
   updateName,
   updateColorPalette,
   updateColorPaletteWithoutLocalStorage,

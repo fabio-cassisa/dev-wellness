@@ -125,16 +125,18 @@ export const BreatheTimerDetailed = () => {
               {dataYesterday != null && (
                 <div className="breathe-history-yesterday">
                   Yesterday&apos;s data:
-                  <p />
+                  <span className="history-card-value">
                   Count: {dataYesterday.breatheTimer.breatheTimerCount}
+                  </span>
                 </div>
               )}
               {historicalBreatheData.count != 0 && (
                 <div className="breathe-history-overall">
                   Overall data:
-                  <p />
+                  <span className="history-card-value">
                   Average per day:{' '}
                   {Math.round(historicalBreatheData.done / historicalBreatheData.count)}
+                  </span>
                 </div>
               )}
             </div>
