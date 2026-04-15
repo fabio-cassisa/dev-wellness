@@ -53,17 +53,11 @@ export const BreatheTimerDetailed = () => {
   const renderBreatheTimerText = () => {
     if (!breatheTimer.isBreatheTimerRunning) {
       return 'S T A R T';
-    } else if (
-      breatheTimer.isBreatheTimerRunning &&
-      !breatheTimer.isBreatheTimerPaused
-    ) {
-      return 'P A U S E';
-    } else if (
-      breatheTimer.isBreatheTimerRunning &&
-      breatheTimer.isBreatheTimerPaused
-    ) {
+    } else if (breatheTimer.isBreatheTimerPaused) {
       return 'R E S U M E';
     }
+    // While actively breathing, the ::after pseudo-element shows the guide text
+    return null;
   };
 
   const breatheTimerClassnames = clsx({
