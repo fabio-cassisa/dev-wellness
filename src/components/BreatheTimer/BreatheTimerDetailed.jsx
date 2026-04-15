@@ -57,6 +57,7 @@ export const BreatheTimerDetailed = () => {
 
   const breatheTimerClassnames = clsx({
     'focus-detailed-circular-progress-bar': true,
+    'breathe-ring': true,
     pulsing:
       breatheTimer.isBreatheTimerRunning && !breatheTimer.isBreatheTimerPaused,
   });

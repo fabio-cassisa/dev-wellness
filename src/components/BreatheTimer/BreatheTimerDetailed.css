@@ -1,49 +1,47 @@
+/* --- Breathe ring glow (full-circle ambient, regardless of 3/4 arc) --- */
+
+.focus-detailed-circular-progress-bar.breathe-ring {
+  position: relative;
+  isolation: isolate;
+  filter: none; /* override drop-shadow that traces the arc shape */
+}
+
+.focus-detailed-circular-progress-bar.breathe-ring::before {
+  content: '';
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  background: var(--secondary-accent-color);
+  filter: blur(35px);
+  opacity: 0.3;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* --- Pulsing animation (breathe in / out cycle) --- */
+
 .pulsing {
-  animation-name: pulse;
-  animation-duration: 10s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
+  animation: pulse 10s linear infinite;
   cursor: default;
 }
 
-.pulsing:after {
+.pulsing::after {
   content: 'breathe in';
   position: absolute;
-  color: var(--primary-text-color);
-  top: calc(55%);
-  left: calc(0%);
-  font-size: 3vmin;
-  font-family: 'Inter', Helvetica, sans-serif;
+  top: 55%;
+  left: 0;
   width: 100%;
-  vertical-align: middle;
+  color: var(--primary-text-color);
+  font-family: 'Inter', Helvetica, sans-serif;
+  font-size: clamp(0.6rem, 3vmin, 0.85rem);
   text-align: center;
-  animation-name: text;
-  animation-duration: 10s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-}
-
-.pulsing:before {
-  content: '';
-  width: 16px;
-  height: 50%;
-  position: absolute;
-  display: block;
-  top: 0;
-  left: calc(50% - 8px);
-  /* z-index: 999; */
-  animation-timing-function: linear;
-  transform-origin: center bottom;
-  animation-name: rotate;
-  animation-duration: 10s;
-  animation-iteration-count: infinite;
+  animation: text 10s linear infinite;
 }
 
 @keyframes text {
   0% {
     content: 'breathe in';
   }
-
   50% {
     content: 'hold';
   }
@@ -73,6 +71,8 @@
   }
 }
 
+/* --- History cards --- */
+
 .breathe-history {
   color: var(--primary-text-color);
   font-family: 'Inter', Helvetica, sans-serif;
@@ -90,18 +90,4 @@
   border-radius: 10px;
   padding: 1rem;
   text-align: center;
-}
-
-/* Media query for medium-sized screens (e.g., tablets) */
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
-  .pulsing:after {
-    font-size: 2vmin;
-  }
-}
-
-/* Media query for larger screens (e.g., desktops) */
-@media only screen and (min-width: 1025px) {
-  .pulsing:after {
-    font-size: 2vmin;
-  }
 }
